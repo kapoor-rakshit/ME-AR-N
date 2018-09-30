@@ -1,0 +1,38 @@
+doctype
+html
+ head
+  title Issues
+  link(href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet")
+ body
+  div(class="panel panel-primary")
+   div(class="panel-body")
+    table(class="table table-striped table-condensed")
+     thead
+      tr
+       th
+       th(style="min-width:80px;") Description
+       th(style="min-width:80px;") Severity
+       th(style="min-width:100px;") Status
+       th(style="min-width:100px;") Date Created
+       th(style="min-width:100px;") Date Resolved / Expected
+       th(style="min-width:20px;")
+       th(style="min-width:20px;") 
+        a(href="http://localhost:5000/issues/deletemultiple/" class="btn btn-danger btn-xs") Delete Selected
+     tbody
+      - for(var i=0; i < len ; i++){
+        tr
+         td 
+          input(type="checkbox" name="delchk" value=i)
+         td #{issue[i].desc}
+         td #{issue[i].seve}
+         td #{issue[i].stat}
+         td #{issue[i].datecr}
+         td #{issue[i].daters}
+         td 
+          a(href="http://localhost:5000/issues/editissue/"+i class="btn btn-xs btn-primary") Edit
+         td 
+          a(href="http://localhost:5000/issues/deleteissue/"+i class="btn btn-xs btn-danger") Delete
+      - }
+    br
+    a(href="http://localhost:5000/issues/addissue" class="btn btn-xs btn-primary") New Issue
+

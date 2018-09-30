@@ -1,0 +1,35 @@
+doctype
+html(lang="en")
+ head
+  title Edit Issue
+  link(href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet")
+ body
+  div(class="container")
+   h1 Edit Issue
+   form(method="post" action="#{formactionval}")
+    div(class="form-group")
+     label(for="descid") Description
+     input(type="text" id="descid" name="desc" class="form-control" required)
+    div(class="form-group")
+     label(for="sevid") Severity
+     select(id="sevid" name="severity" class="form-control" required)
+      option Minor
+      option Major
+      option Critical
+    div(class="form-group")
+     label(for="statid") Status
+     select(id="statid" name="status" class="form-control" required)
+      option Open
+      option In Progress
+      option Closed
+    div(class="form-group")
+     label(for="datecrid") Date Created
+     input(type="date" id="datecrid" name="datecr" class="form-control" required)
+    div(class="form-group")
+     label(for="datersid") Date Resolved / Expected
+     input(type="date" id="datersid" name="daters" class="form-control" required)
+    br
+    br
+    input(type="submit" value="SUBMIT" class="btn btn-info")
+    br
+    br

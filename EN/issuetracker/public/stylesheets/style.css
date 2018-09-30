@@ -1,0 +1,12 @@
+body {
+  padding: 50px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a.active {
+	color: red;
+	font-weight: bold;
+}
