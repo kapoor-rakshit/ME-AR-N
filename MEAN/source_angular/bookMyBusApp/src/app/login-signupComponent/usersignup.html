@@ -1,0 +1,74 @@
+<div class="container">
+    <h3>{{title}}</h3>
+    <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+        <div class="form-group">
+          <label for="email">email</label>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required #emailRef="ngModel" email>
+          <div *ngIf="emailRef.invalid && (emailRef.dirty || emailRef.touched)" class="alert alert-danger">
+            <div *ngIf="emailRef.errors.required">
+              email is required.
+            </div>
+            <div *ngIf="emailRef.errors">
+                enter valid email address.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input [type]="show ? 'text':'password'" class="form-control" id="password" name="password" [(ngModel)]="password" required #passwordRef="ngModel">
+            <input type="checkbox" class="form-check-input" name="chk" [(ngModel)]="show" (click)="toggleshow()">show password
+            <div *ngIf="passwordRef.invalid && (passwordRef.dirty || passwordRef.touched)" class="alert alert-danger">
+              <div *ngIf="passwordRef.errors.required">
+                password is required.
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+                <label for="cnfpassword">Confirm password</label>
+                <input type="password" class="form-control" id="cnfpassword" name="cnfpassword" [(ngModel)]="cnfpassword" required #cnfpasswordRef="ngModel">
+                <div *ngIf="(cnfpasswordRef.dirty || cnfpasswordRef.touched) && password!=cnfpassword" class="alert alert-danger">
+                    passwords must match.
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="firstname" required #firstnameRef="ngModel">
+                <div *ngIf="firstnameRef.invalid && (firstnameRef.dirty || firstnameRef.touched)" class="alert alert-danger">
+                  <div *ngIf="firstnameRef.errors.required">
+                    first name is required.
+                  </div>
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="lastname" required #lastnameRef="ngModel">
+                <div *ngIf="lastnameRef.invalid && (lastnameRef.dirty || lastnameRef.touched)" class="alert alert-danger">
+                  <div *ngIf="lastnameRef.errors.required">
+                    last name is required.
+                  </div>
+                </div>
+        </div>
+        <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" class="form-control" id="location" name="location" [(ngModel)]="location">
+        </div>
+        <div class="form-group">
+                <label for="mobile">Mobile number</label>
+                <input type="tel" pattern="\d{10}" class="form-control" id="mobile" name="mobile" [(ngModel)]="mobile" required #mobileRef="ngModel">
+                <div *ngIf="mobileRef.invalid && (mobileRef.dirty || mobileRef.touched)" class="alert alert-danger">
+                  <div *ngIf="mobileRef.errors.required">
+                    Mobile number is required.
+                  </div>
+                  <div *ngIf="mobileRef.errors.pattern">
+                    enter valid mobile number.      
+                  </div>
+                </div>
+        </div>
+        <button type="submit" class="btn btn-info" [disabled]="formRef.invalid">Register</button>
+        <br><br>
+      </form>
+      <b>Already have an account ? <a routerLink="/auth/user/">Login</a></b>
+      <br><br>
+      <b><a routerLink="/auth/admin/">Login as ADMIN</a></b>
+      <br><br>
+</div>

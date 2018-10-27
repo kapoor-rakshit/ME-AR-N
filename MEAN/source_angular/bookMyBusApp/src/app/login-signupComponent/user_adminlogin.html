@@ -1,0 +1,37 @@
+<ng4-loading-spinner></ng4-loading-spinner>
+<div class="container">
+  <div class="panel">
+    <h3>{{title}}</h3>
+    <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+        <div class="form-group">
+          <label for="email">email</label>
+          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required #emailRef="ngModel" email>
+          <div *ngIf="emailRef.invalid && (emailRef.dirty || emailRef.touched)" class="alert alert-danger">
+            <div *ngIf="emailRef.errors.required">
+              email is required.
+            </div>
+            <div *ngIf="emailRef.errors">
+                enter valid email address.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="password">password</label>
+            <input [type]="show ? 'text':'password'" class="form-control" id="password" name="password" [(ngModel)]="password" required #passwordRef="ngModel">
+            <input type="checkbox" class="form-check-input" name="chk" [(ngModel)]="show" (click)="toggleshow()">show password
+            <div *ngIf="passwordRef.invalid && (passwordRef.dirty || passwordRef.touched)" class="alert alert-danger">
+              <div *ngIf="passwordRef.errors.required">
+                passowrd is required.
+              </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-info" [disabled]="formRef.invalid">Login</button>
+        <br><br>
+    </form>
+    <b>{{stmt}} <a routerLink="/auth/newuser/">Sign Up</a></b>
+    <br>
+    {{orstmt}}
+    <br>
+    <b><a routerLink={{loginurl}}>{{loginstmt}}</a></b>
+  </div>
+</div>
