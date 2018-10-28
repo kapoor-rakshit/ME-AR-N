@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var cors = require("cors");                                   // to be commented in PRODUCTION BUILD
 
 var auth = require('./routes/auth');
+var adminconsole = require("./routes/adminconsole");
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(cors());                                              // to be commented
                // to be USED here before other use() statements
 
 app.use('/auth', auth);
+app.use("/adminconsole", adminconsole);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

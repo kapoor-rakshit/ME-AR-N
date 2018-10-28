@@ -3,3 +3,25 @@
         &nbsp;&nbsp;<a routerLink="/adminconsole/cities" routerLinkActive="active">Cities</a>
     </nav>
 <br><br>
+<div class='panel panel-primary'>
+    <div class='panel-body'>
+        <table class="table table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th style="min-width: 80px;">Name</th>
+                    <th style="min-width: 80px;">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let city of cities">
+                    <td>{{city.name}}</td>
+                    <td>{{city.desc}}</td>
+                    <td><a [routerLink]="['/adminconsole/cities/editcity',city._id]" class="btn btn-xs btn-primary">Edit</a></td>
+                    <td><a (click)="deletecity(city._id)" class="btn btn-xs btn-danger">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <a routerLink="/adminconsole/cities/addcity" class="btn btn-xs btn-primary">Add City</a>
+    </div>
+</div>

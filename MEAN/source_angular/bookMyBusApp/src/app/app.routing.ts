@@ -8,6 +8,8 @@ import { UserComp } from './userComponent/userComp';
 import { AddBus } from './adminComponent/addbus';
 import { EditBus } from './adminComponent/editbus';
 import { AdminCityComp } from './adminComponent/adminCityComp';
+import { EditCity } from './adminComponent/editcity';
+import { AddCity } from './adminComponent/addcity';
 
 
 const appRoutes:Routes = [
@@ -18,6 +20,8 @@ const appRoutes:Routes = [
     {path: "adminconsole/buses", component: AdminComp},
     {path: "userconsole", component: UserComp},
     {path: "adminconsole/cities", component: AdminCityComp},
+    {path: "adminconsole/cities/editcity/:id", component: EditCity},
+    {path: "adminconsole/cities/addcity", component: AddCity},
     {path: "adminconsole/buses/editbus/:id", component: EditBus},
     {path: "adminconsole/buses/addbus", component: AddBus}
 ];

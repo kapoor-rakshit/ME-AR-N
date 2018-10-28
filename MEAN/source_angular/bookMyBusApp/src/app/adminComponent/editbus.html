@@ -3,3 +3,53 @@
         &nbsp;&nbsp;<a routerLink="/adminconsole/cities" routerLinkActive="active">Cities</a>
     </nav>
 <br><br>
+<div class="container">
+    <h1>Edit Bus</h1>
+    <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+        <div class="form-group">
+            <label for="routeno">Route No.</label>
+            <input type="text" class="form-control" id="routeno" name="routeno" [ngModel]="bus.routeno" required #routenoRef="ngModel">
+            <div *ngIf="routenoRef.invalid && (routenoRef.dirty || routenoRef.touched)" class="alert alert-danger">
+                <div *ngIf="routenoRef.errors.required">
+                    route number is required.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+                <label for="desc">Description</label>
+                <input type="text" class="form-control" id="desc" name="desc" [ngModel]="bus.desc" required #descRef="ngModel">
+                <div *ngIf="descRef.invalid && (descRef.dirty || descRef.touched)" class="alert alert-danger">
+                    <div *ngIf="descRef.errors.required">
+                        description is required.
+                    </div>
+                </div>
+        </div>
+        <div class="form-group">
+            <label for="fromcity">From</label>
+            <select class="form-control" name="fromcity" [ngModel]="bus.fromcity">
+                <option *ngFor="let s of fromcityvals" [value]="s">
+                    {{s}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="tocity">To</label>
+            <select class="form-control" name="tocity" [ngModel]="bus.tocity">
+                <option *ngFor="let s of tocityvals" [value]="s">
+                    {{s}}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+                <label for="capacity">Capacity</label>
+                <input type="number" class="form-control" id="capacity" name="capacity" [ngModel]="bus.capacity" required #capacityRef="ngModel">
+                <div *ngIf="capacityRef.invalid && (capacityRef.dirty || capacityRef.touched)" class="alert alert-danger">
+                    <div *ngIf="capacityRef.errors.required">
+                        capacity of bus is required.
+                    </div>
+                </div>
+        </div>
+        <button type="submit" class="btn btn-info" [disabled]="formRef.invalid">Submit</button>
+        <br><br>
+    </form>
+</div>

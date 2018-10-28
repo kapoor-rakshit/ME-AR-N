@@ -3,7 +3,7 @@
     &nbsp;&nbsp;<a routerLink="/adminconsole/cities" routerLinkActive="active">Cities</a>
 </nav>
 <br><br>
-<div class='panel panel-primary'>
+<div class='panel panel-primary' style="margin-left: 10px;">
     <div class='panel-body'>
         <div class='row'>
             <div class='col-md-2'>Search: <input type='text' [(ngModel)]='descFilter' /></div>
@@ -31,12 +31,13 @@
                             <td *ngIf="fromcityv">{{ bus.fromcity}}</td>
                             <td *ngIf="tocityv">{{ bus.tocity}}</td>
                             <td *ngIf="capacityv">{{ bus.capacity}}</td>
-                            <td><a [routerLink]="['/adminconsole/buses/editbus',bus._id]" class="btn btn-xs btn-primary">Edit</a></td>
+                            <td><a (click)="updatebus(bus._id)" class="btn btn-xs btn-primary">Edit</a></td>
                             <td><a (click)="deletebus(bus._id)" class="btn btn-xs btn-danger">Delete</a></td>
                         </tr>
                 </tbody>
         </table>
         <br>
         <a routerLink="/adminconsole/buses/addbus" class="btn btn-xs btn-primary">Add Bus</a>
+        <br><br>
     </div>
 </div>
