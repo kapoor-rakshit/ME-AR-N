@@ -3,3 +3,28 @@
         &nbsp;&nbsp;<a routerLink="/adminconsole/cities" routerLinkActive="active">Cities</a>
     </nav>
 <br><br>
+<div class="container">
+    <h1>Add City</h1>
+    <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+        <div class="form-group">
+            <label for="name">City Name</label>
+            <input type="text" class="form-control" id="name" name="name" [ngModel]="name" required #nameRef="ngModel">
+            <div *ngIf="nameRef.invalid && (nameRef.dirty || nameRef.touched)" class="alert alert-danger">
+                <div *ngIf="nameRef.errors.required">
+                    city name is required.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="desc">City Decsription</label>
+            <input type="text" class="form-control" id="desc" name="desc" [ngModel]="desc" required #descRef="ngModel">
+            <div *ngIf="descRef.invalid && (descRef.dirty || descRef.touched)" class="alert alert-danger">
+                <div *ngIf="descRef.errors.required">
+                    city decsription is required.
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-info" [disabled]="formRef.invalid">Submit</button>
+        <br><br>
+    </form>
+</div>

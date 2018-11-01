@@ -22,6 +22,9 @@ import { AdminCityComp } from './adminComponent/adminCityComp';
 import { CityService } from './adminComponent/city_service';
 import { AddCity } from './adminComponent/addcity';
 import { EditCity } from './adminComponent/editcity';
+import { UserHistory } from './userComponent/userHistory';
+import { UserDetails } from './userComponent/userDetails';
+import { BookBus } from './userComponent/bookBus';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { EditCity } from './adminComponent/editcity';
     AddBus,
     BusFilter,
     AddCity,
-    EditCity
+    EditCity,
+    UserHistory,
+    UserDetails,
+    BookBus
   ],
   imports: [
     BrowserModule, routing, FormsModule, HttpClientModule, Ng4LoadingSpinnerModule.forRoot()

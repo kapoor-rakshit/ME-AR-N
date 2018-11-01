@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BusService } from './bus_service';
+import { CityService } from './city_service';
+import { City } from './cityinterface';
 
 @Component({
     templateUrl: './addbus.html',
@@ -9,10 +11,19 @@ import { BusService } from './bus_service';
 
 export class AddBus implements OnInit{
 
-    fromcityvals: string[] = ["ATQ", "JAL", "CCU", "HYD", "PNQ"];
-    tocityvals: string[] = ["ATQ", "JAL", "CCU", "HYD", "PNQ"];
+    fromcityvals: string[] = [];
+    tocityvals: string[] = [];
+    citydata: City[];
 
-    constructor(private _busService: BusService, private router: Router){}
+    constructor(private _busService: BusService, private _cityService: CityService, private router: Router){
+       this._cityService.getCities().subscribe(
+        (data: any) => {
+          this.citydata = data;
+          this.citydata.forEach(city => {this.fromcityvals.push(city.name);this.tocityvals.push(city.name);});
+        },
+        err => console.log(err)
+      );
+    }
 
     ngOnInit(){
     }
