@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { BusService } from '../adminComponent/bus_service';
 import { Bus } from '../adminComponent/businterface';
 
@@ -16,8 +16,13 @@ export class UserComp implements OnInit{
     fromcityv: boolean = true;
     tocityv: boolean = true;
     buses: Bus[];
+    userid: any;
 
-    constructor(private _busService: BusService){
+    constructor(private _busService: BusService, private route: ActivatedRoute){
+        this.route.params.forEach((params: Params) => {
+            this.userid = params['userid'];                      // + signifies that it is a number, so removed
+        });
+
         this._busService.getBuses().subscribe(
             (data: any) => {
                 this.buses = data;

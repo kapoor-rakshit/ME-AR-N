@@ -14,6 +14,7 @@ export class UserSignup implements OnInit{
   show: boolean = false;
   title: String = 'Register';
   data: any = {};
+  userid: any;
 
   constructor(private _loginsignupservice: loginsignupService, private router: Router, private spinnerService: Ng4LoadingSpinnerService) { }
 
@@ -42,7 +43,8 @@ export class UserSignup implements OnInit{
         alert("USER ALREADY EXISTs");
       }
       else{
-        this.router.navigate([""]);
+        this.userid = this.data._id;
+        this.router.navigate(["userconsole/buses", this.userid]);
       }
       },
       err => console.log(err)

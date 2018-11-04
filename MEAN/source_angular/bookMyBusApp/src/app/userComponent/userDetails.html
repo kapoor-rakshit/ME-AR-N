@@ -1,6 +1,31 @@
 <nav>
-    &nbsp;&nbsp;<a routerLink="/userconsole/buses" routerLinkActive="active">Book Now</a>
-    &nbsp;&nbsp;<a routerLink="/userconsole/history" routerLinkActive="active">Booking History</a>
-    &nbsp;&nbsp;<a routerLink="/userconsole/details" routerLinkActive="active">My Details</a>
+    &nbsp;&nbsp;<a [routerLink]="['/userconsole/buses', userid]" routerLinkActive="active">Book Now</a>
+    &nbsp;&nbsp;<a [routerLink]="['/userconsole/history', userid]" routerLinkActive="active">Booking History</a>
+    &nbsp;&nbsp;<a [routerLink]="['/userconsole/details', userid]" routerLinkActive="active">My Details</a>
 </nav>
 <br><br>
+<div class="container">
+    <h1>My Details</h1>
+    <form>
+        <div class="form-group">
+            <label for="email">email id</label>
+            <input type="text" class="form-control" id="email" name="email" [ngModel]="data.email" disabled="true">
+        </div>
+        <div class="form-group">
+            <label for="firstname">First Name</label>
+            <input type="text" class="form-control" id="firstname" name="firstname" [ngModel]="data.firstname" disabled="true">
+        </div>
+        <div class="form-group">
+            <label for="lastname">Last Name</label>
+            <input type="text" class="form-control" id="lastname" name="lastname" [ngModel]="data.lastname" disabled="true">
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" name="location" [ngModel]="data.location" disabled="true">
+        </div>
+        <div class="form-group">
+            <label for="mobile">Mobile</label>
+            <input type="text" class="form-control" id="mobile" name="mobile" [ngModel]="data.mobile" disabled="true">
+        </div>
+    </form>
+</div>

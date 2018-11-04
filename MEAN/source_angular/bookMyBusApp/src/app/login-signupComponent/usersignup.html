@@ -3,7 +3,7 @@
     <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
         <div class="form-group">
           <label for="email">email</label>
-          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required #emailRef="ngModel" email>
+          <input type="email" class="form-control" id="email" name="email" [ngModel]="email" required #emailRef="ngModel" email>
           <div *ngIf="emailRef.invalid && (emailRef.dirty || emailRef.touched)" class="alert alert-danger">
             <div *ngIf="emailRef.errors.required">
               email is required.
@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
                 <label for="firstname">First Name</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" [(ngModel)]="firstname" required #firstnameRef="ngModel">
+                <input type="text" class="form-control" id="firstname" name="firstname" [ngModel]="firstname" required #firstnameRef="ngModel">
                 <div *ngIf="firstnameRef.invalid && (firstnameRef.dirty || firstnameRef.touched)" class="alert alert-danger">
                   <div *ngIf="firstnameRef.errors.required">
                     first name is required.
@@ -41,7 +41,7 @@
         </div>
         <div class="form-group">
                 <label for="lastname">Last Name</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" [(ngModel)]="lastname" required #lastnameRef="ngModel">
+                <input type="text" class="form-control" id="lastname" name="lastname" [ngModel]="lastname" required #lastnameRef="ngModel">
                 <div *ngIf="lastnameRef.invalid && (lastnameRef.dirty || lastnameRef.touched)" class="alert alert-danger">
                   <div *ngIf="lastnameRef.errors.required">
                     last name is required.
@@ -50,11 +50,11 @@
         </div>
         <div class="form-group">
                 <label for="location">Location</label>
-                <input type="text" class="form-control" id="location" name="location" [(ngModel)]="location">
+                <input type="text" class="form-control" id="location" name="location" [ngModel]="location">
         </div>
         <div class="form-group">
                 <label for="mobile">Mobile number</label>
-                <input type="tel" pattern="\d{10}" class="form-control" id="mobile" name="mobile" [(ngModel)]="mobile" required #mobileRef="ngModel">
+                <input type="tel" pattern="\d{10}" class="form-control" id="mobile" name="mobile" [ngModel]="mobile" required #mobileRef="ngModel">
                 <div *ngIf="mobileRef.invalid && (mobileRef.dirty || mobileRef.touched)" class="alert alert-danger">
                   <div *ngIf="mobileRef.errors.required">
                     Mobile number is required.

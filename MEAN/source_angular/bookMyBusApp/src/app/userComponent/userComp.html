@@ -1,7 +1,7 @@
 <nav>
-    &nbsp;&nbsp;<a routerLink="/userconsole/buses" routerLinkActive="active">Book Now</a>
-    &nbsp;&nbsp;<a routerLink="/userconsole/history" routerLinkActive="active">Booking History</a>
-    &nbsp;&nbsp;<a routerLink="/userconsole/details" routerLinkActive="active">My Details</a>
+    &nbsp;&nbsp;<a [routerLink]="['/userconsole/buses', userid]" routerLinkActive="active">Book Now</a>
+    &nbsp;&nbsp;<a [routerLink]="['/userconsole/history', userid]" routerLinkActive="active">Booking History</a>
+    &nbsp;&nbsp;<a [routerLink]="['/userconsole/details', userid]" routerLinkActive="active">My Details</a>
 </nav>
 <br><br>
 <div class='panel panel-primary' style="margin-left: 10px;">
@@ -29,7 +29,7 @@
                             <td *ngIf="descv">{{ bus.desc}}</td>
                             <td *ngIf="fromcityv">{{ bus.fromcity}}</td>
                             <td *ngIf="tocityv">{{ bus.tocity}}</td>
-                            <td><a [routerLink]="['/userconsole/buses', bus._id]" class="btn btn-xs btn-primary">Book</a></td>
+                            <td><a [routerLink]="['/userconsole/buses', userid, bus._id]" class="btn btn-xs btn-primary">Book</a></td>
                         </tr>
                 </tbody>
         </table>

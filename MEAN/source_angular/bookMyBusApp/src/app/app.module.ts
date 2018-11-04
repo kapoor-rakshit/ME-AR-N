@@ -25,6 +25,7 @@ import { EditCity } from './adminComponent/editcity';
 import { UserHistory } from './userComponent/userHistory';
 import { UserDetails } from './userComponent/userDetails';
 import { BookBus } from './userComponent/bookBus';
+import { UserService } from './userComponent/user_service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { BookBus } from './userComponent/bookBus';
   imports: [
     BrowserModule, routing, FormsModule, HttpClientModule, Ng4LoadingSpinnerModule.forRoot()
   ],
-  providers: [loginsignupService, BusService, CityService],
+  providers: [loginsignupService, BusService, CityService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

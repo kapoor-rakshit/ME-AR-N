@@ -15,6 +15,7 @@ export class UserLogin implements OnInit{
   loginurl = "/auth/admin/";
   show: boolean = false;
   data: any = {};
+  userid: any;
 
   constructor(private _loginsignupservice: loginsignupService, private router: Router, private spinnerService: Ng4LoadingSpinnerService) { }
 
@@ -39,7 +40,8 @@ export class UserLogin implements OnInit{
           alert("INVALID CREDENTIALS or USER does not EXIST");
         }
         else{
-          this.router.navigate([""]);
+          this.userid = this.data._id;
+          this.router.navigate(["userconsole/buses", this.userid]);
         }
       },
       err => console.log(err)

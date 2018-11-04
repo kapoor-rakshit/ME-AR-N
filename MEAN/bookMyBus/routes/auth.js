@@ -18,13 +18,11 @@ db.once("open", function(){
 
 var schema = mongoose.Schema;
 var admincollectionschema = new mongoose.Schema({
-	_id: Number,
 	email :String,
 	password: String
 });
 
 var usercollectionschema = new mongoose.Schema({
-	_id: Number,
 	email :String,
 	password: String,
 	firstname: String,
@@ -83,7 +81,7 @@ router.post("/user", function(request, response){
 			console.log("found");
 			if(data.password == pass){
 				console.log("VALID PASSWORD");
-				response.json({"valid":"true"});
+				response.json({"valid":"true", "_id": data._id});
 			}
 			else{
 				console.log("INVALID PASSWORD");
@@ -95,12 +93,6 @@ router.post("/user", function(request, response){
 		console.log(err);
 	})
 
-});
-
-var cnt;
-usercollection.count({}, function(err, res){
-	if(err) console.log(err);
-	else cnt = res + 1;
 });
 
 
@@ -119,7 +111,6 @@ router.post("/newuser", function(request, response){
 			console.log("NOT found");
 
 			var newdocument = new usercollection({
-				_id: cnt,
 				email: mail,
 				password: pass,
 				firstname: firstname,
@@ -130,11 +121,11 @@ router.post("/newuser", function(request, response){
 
 			newdocument.save(function(err, data){
 				if(err) console.log(err);
-				else console.log("DATA ADDED");
+				else {
+					console.log("DATA ADDED");
+					response.json({"_id": data._id});
+				}
 			});
-
-			cnt+=1;
-	        response.json({});
 		}
 		else{
 			console.log("USER already exists");

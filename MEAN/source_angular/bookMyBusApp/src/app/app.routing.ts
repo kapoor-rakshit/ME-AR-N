@@ -21,15 +21,15 @@ const appRoutes:Routes = [
     {path:"auth/newuser", component: UserSignup},
     {path: "auth/admin", component: AdminLogin},
     {path: "adminconsole/buses", component: AdminComp},
-    {path: "userconsole/buses", component: UserComp},
+    {path: "userconsole/buses/:userid", component: UserComp},
     {path: "adminconsole/cities", component: AdminCityComp},
     {path: "adminconsole/cities/editcity/:id", component: EditCity},
     {path: "adminconsole/cities/addcity", component: AddCity},
     {path: "adminconsole/buses/editbus/:id", component: EditBus},
     {path: "adminconsole/buses/addbus", component: AddBus},
-    {path: "userconsole/history", component: UserHistory},
-    {path: "userconsole/details", component: UserDetails},
-    {path: "userconsole/buses/:id", component: BookBus}
+    {path: "userconsole/history/:userid", component: UserHistory},
+    {path: "userconsole/details/:userid", component: UserDetails},
+    {path: "userconsole/buses/:userid/:id", component: BookBus}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

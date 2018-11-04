@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Params, ActivatedRoute } from '@angular/router';
+import { UserService } from './user_service';
 
 @Component({
     templateUrl: './userDetails.html',
@@ -7,7 +9,21 @@ import { Component, OnInit } from '@angular/core';
 
   export class UserDetails implements OnInit{
 
-    constructor(){}
+    userid: any;
+    data: any = {};
+
+    constructor(private route: ActivatedRoute, private _userService: UserService){
+      this.route.params.forEach((params: Params) => {
+        this.userid = params['userid'];                      // + signifies that it is a number, so removed
+    });
+
+      this._userService.getDetails(this.userid).subscribe(
+        (data: any) =>{
+          this.data = data;
+        },
+        err => console.log(err)
+      );
+    }
 
     ngOnInit(){
     }

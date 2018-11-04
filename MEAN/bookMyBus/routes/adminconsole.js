@@ -28,7 +28,8 @@ var busesschema = new mongoose.Schema({
 
 var citiesschema = new mongoose.Schema({
 	name: String,
-	desc: String
+	desc: String,
+	counter: Number
 });
 
 var busescollection = mongoose.model("buscoll", busesschema, "buses");
@@ -101,7 +102,8 @@ router.post("/buses", function(request, response){
 router.post("/cities", function(request, response){
 	var newdocument = new citiescollection({
 		name: request.body.name,
-		desc: request.body.desc
+		desc: request.body.desc,
+		counter: 0
 	});
 
 	newdocument.save(function(err, data){

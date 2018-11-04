@@ -1,7 +1,7 @@
 <nav>
-    &nbsp;&nbsp;<a routerLink="/userconsole/buses" routerLinkActive="active">Book Now</a>
-    &nbsp;&nbsp;<a routerLink="/userconsole/history" routerLinkActive="active">Booking History</a>
-    &nbsp;&nbsp;<a routerLink="/userconsole/details" routerLinkActive="active">My Details</a>
+    &nbsp;&nbsp;<a [routerLink]="['/userconsole/buses', userid]" routerLinkActive="active">Book Now</a>
+    &nbsp;&nbsp;<a [routerLink]="['/userconsole/history', userid]" routerLinkActive="active">Booking History</a>
+    &nbsp;&nbsp;<a [routerLink]="['/userconsole/details', userid]" routerLinkActive="active">My Details</a>
 </nav>
 <br><br>
 <div class="container">
@@ -18,28 +18,31 @@
         </div>
         <div class="form-group">
             <label for="seats">No. of Seats</label>
-            <input type="number" class="form-control" id="seats" name="seats" [ngModel]="seats" required #seatsRef="ngModel">
+            <input type="number" pattern="^\d+$" class="form-control" id="seats" name="seats" [ngModel]="seats" required #seatsRef="ngModel">
             <div *ngIf="seatsRef.invalid && (seatsRef.dirty || seatsRef.touched)" class="alert alert-danger">
                 <div *ngIf="seatsRef.errors.required">
                     no. of seats is required.
+                </div>
+                <div *ngIf="seatsRef.errors.pattern">
+                    enter positive value of seats.
                 </div>
             </div>
         </div>
         <div class="form-group">
                 <label for="routeno">Route No.</label>
-                <input type="text" class="form-control" id="routeno" name="routeno" [ngModel]="bus.routeno" disabled="true">
+                <input type="text" class="form-control" id="routeno" name="routeno" [ngModel]="bus.routeno" disabled="false">
         </div>
         <div class="form-group">
                     <label for="desc">Description</label>
-                    <input type="text" class="form-control" id="desc" name="desc" [ngModel]="bus.desc" disabled="true">
+                    <input type="text" class="form-control" id="desc" name="desc" [ngModel]="bus.desc" disabled="false">
         </div>
         <div class="form-group">
                 <label for="fromcity">From</label>
-                <input type="text" class="form-control" id="fromcity" name="fromcity" [ngModel]="bus.fromcity" disabled="true">
+                <input type="text" class="form-control" id="fromcity" name="fromcity" [ngModel]="bus.fromcity" disabled="false">
         </div>
         <div class="form-group">
                 <label for="tocity">To</label>
-                <input type="text" class="form-control" id="tocity" name="tocity" [ngModel]="bus.tocity" disabled="true">
+                <input type="text" class="form-control" id="tocity" name="tocity" [ngModel]="bus.tocity" disabled="false">
         </div>
         <button type="submit" class="btn btn-info" [disabled]="formRef.invalid">Submit</button>
         <br><br>

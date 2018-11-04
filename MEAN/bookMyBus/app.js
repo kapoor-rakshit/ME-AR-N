@@ -9,6 +9,7 @@ var cors = require("cors");                                   // to be commented
 
 var auth = require('./routes/auth');
 var adminconsole = require("./routes/adminconsole");
+var userconsole = require("./routes/userconsole");
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use(cors());                                              // to be commented
 
 app.use('/auth', auth);
 app.use("/adminconsole", adminconsole);
+app.use("/userconsole", userconsole);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
