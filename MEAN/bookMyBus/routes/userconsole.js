@@ -41,6 +41,19 @@ var usercollection = mongoose.model("user", userschema, "users");
 
 var historycollection = mongoose.model("histcoll", bookinghistoryschema, "bookinghistory");
 
+router.get("/allbookings", function(request, response){
+	var query = historycollection.aggregate([
+			{$sort: {userid: 1}}
+		]);
+	query.exec()
+		.then((data)=>{
+			response.json(data);
+		})
+		.catch((err)=>{
+			console.log(err);
+		})
+});
+
 router.get("/details/:id", function(request, response){
 	var query = usercollection.findOne({_id: request.params.id});
 	query.exec()
@@ -86,7 +99,7 @@ router.post("/buses/:userid/:busid", function(request, response){
 	response.json({});
 });
 
-var bookedseats = 0;
+
 router.get("/buses/:userid/:busid/:date/:routeno", function(request, response){
 	var query = historycollection.find({date: request.params.date, routeno: request.params.routeno});
 	query.exec()
@@ -98,6 +111,30 @@ router.get("/buses/:userid/:busid/:date/:routeno", function(request, response){
 		});
 });
 
+
+router.get("/checkcity/:name", function(request, response){
+	var query = historycollection.count({$or: [{tocity: request.params.name}, {fromcity: request.params.name}]});
+	query.exec()
+		.then((data) =>{
+			response.json({"counter": data});
+			console.log(data);
+		})
+		.catch((err) =>{
+			console.log(err);
+		})
+});
+
+router.get("/checkbus/:routeno", function(request, response){
+	var query = historycollection.count({routeno: request.params.routeno});
+	query.exec()
+		.then((data) =>{
+			response.json({"counter": data});
+			console.log(data);
+		})
+		.catch((err) =>{
+			console.log(err);
+		})
+});
 
 module.exports = router;
 

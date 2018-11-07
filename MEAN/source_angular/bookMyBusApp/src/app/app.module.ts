@@ -26,6 +26,8 @@ import { UserHistory } from './userComponent/userHistory';
 import { UserDetails } from './userComponent/userDetails';
 import { BookBus } from './userComponent/bookBus';
 import { UserService } from './userComponent/user_service';
+import { TopCities } from './adminComponent/topCities';
+import { BookingHistory } from './adminComponent/bookingHistory';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { UserService } from './userComponent/user_service';
     EditCity,
     UserHistory,
     UserDetails,
-    BookBus
+    BookBus,
+    TopCities,
+    BookingHistory
   ],
   imports: [
     BrowserModule, routing, FormsModule, HttpClientModule, Ng4LoadingSpinnerModule.forRoot()

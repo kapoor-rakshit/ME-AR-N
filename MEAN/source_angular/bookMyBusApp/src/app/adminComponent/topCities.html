@@ -1,6 +1,6 @@
 <nav>
-        &nbsp;&nbsp;<a routerLink="/adminconsole/buses" routerLinkActive="active">Buses</a>
-        &nbsp;&nbsp;<a routerLink="/adminconsole/cities" routerLinkActive="active">Cities</a>
+    &nbsp;&nbsp;<a routerLink="/adminconsole/buses" routerLinkActive="active">Buses</a>
+    &nbsp;&nbsp;<a routerLink="/adminconsole/cities" routerLinkActive="active">Cities</a>
 </nav>
 <br><br>
 <div class='panel panel-primary' style="margin-left: 10px;">
@@ -10,21 +10,17 @@
                 <tr>
                     <th style="min-width: 80px;">Name</th>
                     <th style="min-width: 80px;">Description</th>
+                    <th style="min-width: 80px;">Booking Count</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let city of cities">
                     <td>{{city.name}}</td>
                     <td>{{city.desc}}</td>
-                    <td><a [routerLink]="['/adminconsole/cities/editcity',city._id]" class="btn btn-xs btn-primary">Edit</a></td>
-                    <td><a (click)="deletecity(city._id)" class="btn btn-xs btn-danger">Delete</a></td>
+                    <td>{{city.counter}}</td>
                 </tr>
             </tbody>
         </table>
-        <br>
-        <b><a routerLink="/adminconsole/cities/top">Top Destinations</a></b>
-        <br><br><br>
-        <a routerLink="/adminconsole/cities/addcity" class="btn btn-xs btn-primary">Add City</a>
         <br><br>
     </div>
 </div>

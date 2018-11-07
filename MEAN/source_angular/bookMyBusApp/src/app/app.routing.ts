@@ -13,6 +13,8 @@ import { AddCity } from './adminComponent/addcity';
 import { UserHistory } from './userComponent/userHistory';
 import { UserDetails } from './userComponent/userDetails';
 import { BookBus } from './userComponent/bookBus';
+import { TopCities } from './adminComponent/topCities';
+import { BookingHistory } from './adminComponent/bookingHistory';
 
 
 const appRoutes:Routes = [
@@ -29,7 +31,9 @@ const appRoutes:Routes = [
     {path: "adminconsole/buses/addbus", component: AddBus},
     {path: "userconsole/history/:userid", component: UserHistory},
     {path: "userconsole/details/:userid", component: UserDetails},
-    {path: "userconsole/buses/:userid/:id", component: BookBus}
+    {path: "userconsole/buses/:userid/:id", component: BookBus},
+    {path: "adminconsole/cities/top",component: TopCities},
+    {path: "adminconsole/buses/history", component: BookingHistory}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

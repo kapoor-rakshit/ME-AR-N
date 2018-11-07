@@ -14,12 +14,24 @@ export class UserService{
 
     constructor (private _http: HttpClient) { }
 
+    getAllBookings(){
+        return this._http.get(this._userUrl+"/allbookings");
+    }
+
     getDetails(id){
         return this._http.get(this._userUrl+"/details/"+id);
     }
 
     getHistory(id){
         return this._http.get(this._userUrl+"/history/"+id);
+    }
+
+    checkCity(name){
+        return this._http.get(this._userUrl+"/checkcity/"+name);
+    }
+
+    checkBusForUD(routeno){
+        return this._http.get(this._userUrl+"/checkbus/"+routeno);
     }
 
     checkBus(date, routeno, userid, id){

@@ -18,6 +18,10 @@ export class CityService{
         return this._http.get(this._citiesUrl);
     }
 
+    getTopCities(){
+        return this._http.get(this._citiesUrl+"/top");
+    }
+
     getCity(id){
         return this._http.get(this._citiesUrl+"/"+id);
     }
@@ -34,6 +38,10 @@ export class CityService{
     deleteCity(id) {
         let deleteCityURL = `${this._citiesUrl}/${id}`;
         return this._http.delete(deleteCityURL);
+    }
+
+    incrementCounter(tocity){
+        return this._http.get(this._citiesUrl+"/inccounter/"+tocity);
     }
 
 }

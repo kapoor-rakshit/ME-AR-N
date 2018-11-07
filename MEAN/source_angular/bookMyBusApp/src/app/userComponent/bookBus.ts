@@ -4,6 +4,7 @@ import { BusService } from '../adminComponent/bus_service';
 import { UserService } from './user_service';
 
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { CityService } from '../adminComponent/city_service';
 
 @Component({
     templateUrl: './bookBus.html',
@@ -19,7 +20,7 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
     data: any = [];
     bookedseats: number = 0;
 
-    constructor(private _busService: BusService, private _userService: UserService, private route: ActivatedRoute, private router: Router, private spinnerService: Ng4LoadingSpinnerService){
+    constructor(private _busService: BusService,private _cityService: CityService ,private _userService: UserService, private route: ActivatedRoute, private router: Router, private spinnerService: Ng4LoadingSpinnerService){
       this.route.params.forEach((params: Params) => {
         this.id = params['id'];                      // + signifies that it is a number, so removed
         this.userid = params['userid'];
@@ -77,7 +78,12 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
             this.spinnerService.show();
             this._userService.bookBus(newBooking, this.userid, this.id).subscribe(
               (data: any) =>{
-                alert("TICKET BOOKED");
+                this._cityService.incrementCounter(formValue.tocity).subscribe(
+                  (data: any) =>{
+                    alert("TICKET BOOKED");
+                  },
+                  err => console.log(err)
+                );
                 this.spinnerService.hide();
               },
               err => console.log(err)

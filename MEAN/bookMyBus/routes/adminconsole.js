@@ -59,6 +59,19 @@ router.get("/cities", function(request,response){
 		});
 });
 
+router.get("/cities/top/", function(request, response){
+	var query = citiescollection.aggregate([
+			{$sort: {counter: -1}}
+		]);
+	query.exec()
+		.then((data) => {
+			response.json(data);
+		})
+		.catch((err) =>{
+			console.log(err);
+		})
+});
+
 router.get("/buses/:id", function(request, response){
 	var query = busescollection.findOne({_id: request.params.id});
 	query.exec()
@@ -172,6 +185,18 @@ router.delete("/cities/:id", function(request, response){
 		});
 
 	response.json({});
+});
+
+router.get("/cities/inccounter/:tocity", function(request, response){
+	var query = citiescollection.update({name: request.params.tocity}, {$inc: {counter: 1}});
+	query.exec()
+		.then((data) => {
+			response.json({});
+		})
+		.catch((err) => {
+			console.log(err);
+		})
+
 });
 
 
