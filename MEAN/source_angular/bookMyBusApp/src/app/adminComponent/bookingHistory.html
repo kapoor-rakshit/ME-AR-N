@@ -8,7 +8,7 @@
         <table class="table table-striped table-condensed" *ngIf="data && data.length">
             <thead>
                 <tr>
-                    <th style="min-width: 80px;">User id</th>
+                    <th style="min-width: 80px;">User email</th>
                     <th style="min-width: 80px;">Route No</th>
                     <th style="min-width: 80px;">Description</th>
                     <th style="min-width: 80px;">From</th>
@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let d of data">
-                    <td>{{ d.userid}}</td>
+                    <td>{{ d.usermail}}</td>
                     <td>{{ d.routeno}}</td>
                     <td>{{ d.desc}}</td>
                     <td>{{ d.fromcity}}</td>

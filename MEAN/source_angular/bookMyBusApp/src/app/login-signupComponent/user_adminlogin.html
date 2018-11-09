@@ -5,7 +5,7 @@
     <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
         <div class="form-group">
           <label for="email">email</label>
-          <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required #emailRef="ngModel" email>
+          <input type="email" class="form-control" id="email" name="email" [ngModel]="email" required #emailRef="ngModel" email>
           <div *ngIf="emailRef.invalid && (emailRef.dirty || emailRef.touched)" class="alert alert-danger">
             <div *ngIf="emailRef.errors.required">
               email is required.
@@ -17,7 +17,7 @@
         </div>
         <div class="form-group">
             <label for="password">password</label>
-            <input [type]="show ? 'text':'password'" class="form-control" id="password" name="password" [(ngModel)]="password" required #passwordRef="ngModel">
+            <input [type]="show ? 'text':'password'" class="form-control" id="password" name="password" [ngModel]="password" required #passwordRef="ngModel">
             <input type="checkbox" class="form-check-input" name="chk" [(ngModel)]="show" (click)="toggleshow()">show password
             <div *ngIf="passwordRef.invalid && (passwordRef.dirty || passwordRef.touched)" class="alert alert-danger">
               <div *ngIf="passwordRef.errors.required">

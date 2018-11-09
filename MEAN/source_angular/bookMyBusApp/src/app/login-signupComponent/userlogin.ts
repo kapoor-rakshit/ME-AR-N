@@ -9,8 +9,11 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 })
 
 export class UserLogin implements OnInit{
+  email: String;
+  password: String;
   title = 'Login';
   stmt = "Don't have an account ?";
+  orstmt = "";
   loginstmt = "Login as ADMIN";
   loginurl = "/auth/admin/";
   show: boolean = false;

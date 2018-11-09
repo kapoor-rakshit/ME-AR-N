@@ -9,6 +9,11 @@ import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 })
 
 export class UserSignup implements OnInit{
+  email: String;
+  firstname: String;
+  lastname: String;
+  location: String;
+  mobile: String;
   password: String;
   cnfpassword: String;
   show: boolean = false;

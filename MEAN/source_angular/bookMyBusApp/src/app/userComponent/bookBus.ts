@@ -13,6 +13,8 @@ import { CityService } from '../adminComponent/city_service';
 
   export class BookBus implements OnInit{
 
+    date: String;
+    seats: Number;
     id: any;
     userid: any;
     bus:any = {};
@@ -80,7 +82,8 @@ import { CityService } from '../adminComponent/city_service';
               (data: any) =>{
                 this._cityService.incrementCounter(formValue.tocity).subscribe(
                   (data: any) =>{
-                    alert("TICKET BOOKED");
+                    alert("TICKET BOOKED.\nYou will receive an email confirmation shortly.");
+                    this.router.navigate(["/userconsole/history", this.userid]);
                   },
                   err => console.log(err)
                 );

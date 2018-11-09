@@ -4,6 +4,8 @@ import {City} from './cityinterface';
 import {CityService} from './city_service';
 import { UserService } from '../userComponent/user_service';
 
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 @Component({
     templateUrl: './adminCityComp.html',
     styleUrls: ['./adminComp.css']
@@ -15,8 +17,10 @@ export class AdminCityComp implements OnInit{
     resp: any={};
     cityname: any;
 
-    constructor(private _cityService: CityService,private _userService: UserService, private router: Router){
+    constructor(private _cityService: CityService,private _userService: UserService, private router: Router, private spinnerService: Ng4LoadingSpinnerService){
+        this.spinnerService.show();
         this.getCities();
+        this.spinnerService.hide();
     }
 
     ngOnInit(){
@@ -33,6 +37,7 @@ export class AdminCityComp implements OnInit{
 
     deletecity(id){
             // check if city is not booked for present/future dates, then delete else not
+            this.spinnerService.show();
         this._cityService.getCity(id).subscribe(
             (resp: any) =>{
                 this.resp = resp;
@@ -54,6 +59,7 @@ export class AdminCityComp implements OnInit{
                     },
                     err => console.log(err)
                 );
+                this.spinnerService.hide();
             },
             err => console.log(err)
         );

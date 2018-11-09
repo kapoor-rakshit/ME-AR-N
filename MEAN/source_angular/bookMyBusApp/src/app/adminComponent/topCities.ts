@@ -3,6 +3,8 @@ import { CityService } from './city_service';
 import { City } from './cityinterface';
 import { ActivatedRoute, Params } from '@angular/router';
 
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 @Component({
     templateUrl: './topCities.html',
     styleUrls: ['./adminComp.css']
@@ -12,9 +14,10 @@ export class TopCities implements OnInit{
 
     cities: City[];
 
-    constructor(private _cityService: CityService, private route: ActivatedRoute){
-        
+    constructor(private _cityService: CityService, private route: ActivatedRoute, private spinnerServive: Ng4LoadingSpinnerService){
+        this.spinnerServive.show();
         this.getTopCities();
+        this.spinnerServive.hide();
     }
 
     getTopCities(){

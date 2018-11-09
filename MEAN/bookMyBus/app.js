@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
                                                                // UNCOMMENT in DEVELOPMENT
-var cors = require("cors");                                   // to be commented in PRODUCTION BUILD
+//var cors = require("cors");                                   // to be commented in PRODUCTION BUILD
 
 var auth = require('./routes/auth');
 var adminconsole = require("./routes/adminconsole");
@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
                                                                  // UNCOMMENT in DEVELOPMENT
-app.use(cors());                                              // to be commented in PRODUCTION BUILD
+//app.use(cors());                                              // to be commented in PRODUCTION BUILD
                // to be USED here before other use() statements
 
 app.use('/auth', auth);

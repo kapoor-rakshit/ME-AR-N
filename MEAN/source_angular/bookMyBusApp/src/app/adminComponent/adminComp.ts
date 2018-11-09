@@ -4,6 +4,8 @@ import { Bus } from './businterface';
 import { BusService } from './bus_service';
 import { UserService } from '../userComponent/user_service';
 
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 
 @Component({
     templateUrl: './adminComp.html',
@@ -22,8 +24,10 @@ export class AdminComp implements OnInit{
     resp: any = {};
     routeno: any;
 
-    constructor(private _busService: BusService, private _userService: UserService, private router: Router){
+    constructor(private _busService: BusService, private _userService: UserService, private router: Router, private spinnerService: Ng4LoadingSpinnerService){
+        this.spinnerService.show();
         this.getBuses();           // for reloading page when navigated here from other component
+        this.spinnerService.hide();
     }
 
     ngOnInit(){
@@ -41,6 +45,7 @@ export class AdminComp implements OnInit{
     updatebus(id){
 
         // check if bus is not booked for present/future dates, then update else not
+        this.spinnerService.show();
         this._busService.getBus(id).subscribe(
             (resp: any)=>{
                 this.resp = resp;
@@ -57,6 +62,7 @@ export class AdminComp implements OnInit{
                     },
                     err => console.log(err)
                 );
+                this.spinnerService.hide();
             },
             err => console.log(err)
         );
@@ -65,6 +71,7 @@ export class AdminComp implements OnInit{
     deletebus(id){
 
         // check if bus is not booked for present/future dates, then delete else not
+        this.spinnerService.show();
         this._busService.getBus(id).subscribe(
             (resp: any)=>{
                 this.resp = resp;
@@ -86,6 +93,7 @@ export class AdminComp implements OnInit{
                     },
                     err => console.log(err)
                 );
+                this.spinnerService.hide();
             },
             err => console.log(err)
         );
