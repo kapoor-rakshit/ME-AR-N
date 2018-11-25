@@ -1,9 +1,13 @@
+<ng4-loading-spinner></ng4-loading-spinner>
 <nav>
-        &nbsp;&nbsp;<a routerLink="/adminconsole/buses" routerLinkActive="active">Buses</a>
-        &nbsp;&nbsp;<a routerLink="/adminconsole/cities" routerLinkActive="active">Cities</a>
-    </nav>
+    &nbsp;&nbsp;<a routerLink="/adminconsole/buses" routerLinkActive="active">Buses</a>
+    &nbsp;&nbsp;<a routerLink="/adminconsole/history" routerLinkActive="active">Booking History</a>
+    &nbsp;&nbsp;<a routerLink="/adminconsole/cities" routerLinkActive="active">Cities</a>
+    &nbsp;&nbsp;<a routerLink="/adminconsole/topcities" routerLinkActive="active">Top Destinations</a>
+    <a routerLink="" class="btn btn-xs btn-primary" style="float:right;margin-right: 20px;">Log out</a>
+</nav>
 <br><br>
-<div class="container">
+<div class="container" style="width: 40%;">
     <h1>Edit Bus</h1>
     <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
         <div class="form-group">

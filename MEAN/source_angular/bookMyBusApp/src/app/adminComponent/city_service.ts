@@ -4,7 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class CityService{
 
-    private _citiesUrl = "http://localhost:5000/adminconsole/cities";     /* URL of Express server */
+    private _citiesUrl = "/adminconsole/cities";     /* URL of Express server in PRODUCTION */
+                                                    /* give absolute URL ie localhost:3000/admincon... in DEV */
 
     private httpOptions = {
         headers: new HttpHeaders({

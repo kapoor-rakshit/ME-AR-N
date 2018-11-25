@@ -3,7 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class loginsignupService{
-    private _serverurl = "http://localhost:5000/auth";    /* URL of Express server */
+    private _serverurl = "/auth";    /* URL of Express server in PRODUCTION */
+                                     /* give absolute URL ie localhost:3000/auth in DEV */
 
     private httpOptions = {
         headers: new HttpHeaders({
@@ -23,5 +24,9 @@ export class loginsignupService{
 
     signupuser(newuser){
         return this._http.post(this._serverurl+"/newuser/", newuser, this.httpOptions);
+    }
+
+    signinusergoogle(newuser){
+        return this._http.post(this._serverurl+"/newgoogleuser/", newuser, this.httpOptions);
     }
 }

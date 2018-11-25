@@ -32,8 +32,8 @@ const appRoutes:Routes = [
     {path: "userconsole/history/:userid", component: UserHistory},
     {path: "userconsole/details/:userid", component: UserDetails},
     {path: "userconsole/buses/:userid/:id", component: BookBus},
-    {path: "adminconsole/cities/top",component: TopCities},
-    {path: "adminconsole/buses/history", component: BookingHistory}
+    {path: "adminconsole/topcities",component: TopCities},
+    {path: "adminconsole/history", component: BookingHistory}
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing = RouterModule.forRoot(appRoutes, {useHash: true});

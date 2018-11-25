@@ -3,6 +3,7 @@ var express = require("express");
 var router = express.Router();
 var mongoose = require("mongoose");
 var nodemailer = require("nodemailer");
+var Razorpay = require("razorpay");
 
 var transporter = nodemailer.createTransport({
   service: 'yahoo',
@@ -14,7 +15,7 @@ var transporter = nodemailer.createTransport({
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect("mongodb://localhost:27017/menagerie", {useMongoClient: true});
+mongoose.connect("mongodb://kapoor-rakshit:kapoorrakshit1@ds255403.mlab.com:55403/menagerie", {useMongoClient: true});
 
 var db = mongoose.connection;
 
@@ -86,10 +87,24 @@ router.get("/history/:id", function(request, response){
 		})
 });
 
-router.post("/buses/:userid/:busid", function(request, response){
+router.post("/buses/:userid/:busid/:razorpayid/:amount", function(request, response){
 
 	var userdata = {};
 	var usermail = "";
+
+	var instance = new Razorpay({
+  		key_id: 'rzp_test_tYUZjJGgwdXpyK',
+  		key_secret: 'DUfAofQYaqZ6cY9GO1V5nq5Y'
+	});
+
+	instance.payments.capture(request.params.razorpayid, request.params.amount)
+		.then((data) => {
+			console.log(data);
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+
 	var query = usercollection.findOne({_id: request.params.userid});
 	query.exec()
 		.then((data) =>{

@@ -1,6 +1,10 @@
+<ng4-loading-spinner></ng4-loading-spinner>
 <nav>
     &nbsp;&nbsp;<a routerLink="/adminconsole/buses" routerLinkActive="active">Buses</a>
+    &nbsp;&nbsp;<a routerLink="/adminconsole/history" routerLinkActive="active">Booking History</a>
     &nbsp;&nbsp;<a routerLink="/adminconsole/cities" routerLinkActive="active">Cities</a>
+    &nbsp;&nbsp;<a routerLink="/adminconsole/topcities" routerLinkActive="active">Top Destinations</a>
+    <a routerLink="" class="btn btn-xs btn-primary" style="float:right;margin-right: 20px;">Log out</a>
 </nav>
 <br><br>
 <div class='panel panel-primary' style="margin-left: 10px;">
@@ -9,6 +13,7 @@
             <div class='col-md-2'>Search: <input type='text' [(ngModel)]='descFilter' /></div>
         </div>
         <br>
+        <h3><b>Headers Required</b></h3><br>
         <input type="checkbox" [(ngModel)]="routenov"> Route No. <br>
         <input type="checkbox" [(ngModel)]="descv"> Description    <br>
         <input type="checkbox" [(ngModel)]="fromcityv"> From      <br>
@@ -36,9 +41,7 @@
                         </tr>
                 </tbody>
         </table>
-        <br>
-        <b><a routerLink="/adminconsole/buses/history">Booking History</a></b>
-        <br><br><br>
+        <br><br>
         <a routerLink="/adminconsole/buses/addbus" class="btn btn-xs btn-primary">Add Bus</a>
         <br><br>
     </div>

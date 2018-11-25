@@ -1,10 +1,12 @@
+<ng4-loading-spinner></ng4-loading-spinner>
 <nav>
     &nbsp;&nbsp;<a [routerLink]="['/userconsole/buses', userid]" routerLinkActive="active">Book Now</a>
     &nbsp;&nbsp;<a [routerLink]="['/userconsole/history', userid]" routerLinkActive="active">Booking History</a>
     &nbsp;&nbsp;<a [routerLink]="['/userconsole/details', userid]" routerLinkActive="active">My Details</a>
+    <a routerLink="" class="btn btn-xs btn-primary" style="float:right;margin-right: 20px;">Log out</a>
 </nav>
 <br><br>
-<div class="container">
+<div class="container" style="width: 40%;">
     <h1>My Details</h1>
     <form>
         <div class="form-group">

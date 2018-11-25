@@ -1,10 +1,12 @@
+<ng4-loading-spinner></ng4-loading-spinner>
 <nav>
     &nbsp;&nbsp;<a [routerLink]="['/userconsole/buses', userid]" routerLinkActive="active">Book Now</a>
     &nbsp;&nbsp;<a [routerLink]="['/userconsole/history', userid]" routerLinkActive="active">Booking History</a>
     &nbsp;&nbsp;<a [routerLink]="['/userconsole/details', userid]" routerLinkActive="active">My Details</a>
+    <a routerLink="" class="btn btn-xs btn-primary" style="float:right;margin-right: 20px;">Log out</a>
 </nav>
 <br><br>
-<div class="container">
+<div class="container" style="width: 40%;">
     <h1>Confirm Booking</h1>
     <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
         <div class="form-group">
@@ -44,7 +46,7 @@
                 <label for="tocity">To</label>
                 <input type="text" class="form-control" id="tocity" name="tocity" [ngModel]="bus.tocity" disabled="false">
         </div>
-        <button type="submit" class="btn btn-info" [disabled]="formRef.invalid">Submit</button>
+        <button type="submit" class="btn btn-info" [disabled]="formRef.invalid">Check and Pay</button>
         <br><br>
     </form>
 </div>

@@ -1,5 +1,5 @@
 <ng4-loading-spinner></ng4-loading-spinner>
-<div class="container">
+<div class="container" style="width: 40%;">
   <div class="panel">
     <h3>{{title}}</h3>
     <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
@@ -29,9 +29,9 @@
         <br><br>
     </form>
     <b>{{stmt}} <a routerLink="/auth/newuser/">Sign Up</a></b>
-    <br>
-    {{orstmt}}
-    <br>
+    <br><br>
+    <div class="g-signin2" data-longtitle="true" data-onsuccess="onSignIn"></div>
+    <br><br>
     <b><a routerLink={{loginurl}}>{{loginstmt}}</a></b>
   </div>
 </div>

@@ -4,7 +4,7 @@ var mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect("mongodb://localhost:27017/menagerie", {useMongoClient: true});
+mongoose.connect("mongodb://kapoor-rakshit:kapoorrakshit1@ds255403.mlab.com:55403/menagerie", {useMongoClient: true});
 
 var db = mongoose.connection;
 

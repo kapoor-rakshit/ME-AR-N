@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { BusService } from '../adminComponent/bus_service';
 import { UserService } from './user_service';
-
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { CityService } from '../adminComponent/city_service';
+
+declare var Razorpay: any; 
 
 @Component({
     templateUrl: './bookBus.html',
@@ -22,13 +23,16 @@ import { CityService } from '../adminComponent/city_service';
     data: any = [];
     bookedseats: number = 0;
 
+    razorpay_id: any;
+    amountval: any;
+
     constructor(private _busService: BusService,private _cityService: CityService ,private _userService: UserService, private route: ActivatedRoute, private router: Router, private spinnerService: Ng4LoadingSpinnerService){
       this.route.params.forEach((params: Params) => {
         this.id = params['id'];                      // + signifies that it is a number, so removed
         this.userid = params['userid'];
       });
       this.spinnerService.show();
-    this._busService.getBus(this.id).subscribe(     // pass values fetched from URL in subscribe()
+      this._busService.getBus(this.id).subscribe(     // pass values fetched from URL in subscribe()
         (resp:any) => {
           this.bus = resp;
           this.capacity = this.bus.capacity;
@@ -36,6 +40,7 @@ import { CityService } from '../adminComponent/city_service';
         },
         err => console.log(err)
       );
+      
     }
 
     ngOnInit(){
@@ -77,20 +82,33 @@ import { CityService } from '../adminComponent/city_service';
               seats: formValue.seats,
               date: formValue.date
             };
-            this.spinnerService.show();
-            this._userService.bookBus(newBooking, this.userid, this.id).subscribe(
-              (data: any) =>{
-                this._cityService.incrementCounter(formValue.tocity).subscribe(
-                  (data: any) =>{
-                    alert("TICKET BOOKED.\nYou will receive an email confirmation shortly.");
-                    this.router.navigate(["/userconsole/history", this.userid]);
-                  },
-                  err => console.log(err)
-                );
-                this.spinnerService.hide();
-              },
-              err => console.log(err)
-            );
+
+            let options = {
+              "key": "rzp_test_tYUZjJGgwdXpyK",
+              "amount": "200000",         // Amount in paise , 200000 paise = INR 2000
+              "name": "BookMyBus",
+              "handler": function (response){
+                  this.razorpay_id = response.razorpay_payment_id;
+                    this.amountval = "200000";
+                    this.spinnerService.show();
+                    this._userService.bookBus(newBooking, this.userid, this.id, this.razorpay_id, this.amountval).subscribe(
+                      (data: any) =>{
+                        this._cityService.incrementCounter(formValue.tocity).subscribe(
+                          (data: any) =>{
+                            alert("TICKET BOOKED.\nYou will receive an email confirmation shortly.");
+                            this.router.navigate(["/userconsole/history", this.userid]);
+                          },
+                          err => console.log(err)
+                        );
+                        this.spinnerService.hide();
+                      },
+                      err => console.log(err)
+                    );
+                    
+              }
+          };
+          var rzp1 = new Razorpay(options);
+          rzp1.open();
           }
           else{
             let left = this.capacity-this.bookedseats;

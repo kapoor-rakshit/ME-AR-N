@@ -1,4 +1,5 @@
-<div class="container">
+<ng4-loading-spinner></ng4-loading-spinner>
+<div class="container" style="width: 40%;">
     <h3>{{title}}</h3>
     <form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
         <div class="form-group">
@@ -68,6 +69,8 @@
         <br><br>
       </form>
       <b>Already have an account ? <a routerLink="/auth/user/">Login</a></b>
+      <br><br>
+      <div class="g-signin2" data-longtitle="true" data-onsuccess="onSignIn"></div>
       <br><br>
       <b><a routerLink="/auth/admin/">Login as ADMIN</a></b>
       <br><br>

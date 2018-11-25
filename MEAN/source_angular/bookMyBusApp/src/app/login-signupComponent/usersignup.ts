@@ -30,6 +30,32 @@ export class UserSignup implements OnInit{
     this.show = !this.show;
   }
 
+  onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    let userdata = {
+      mail : profile.getEmail(),
+      pass : "",
+      firstname: profile.getName(),
+      lastname: "",
+      location: "",
+      mobile: ""
+      };
+
+    console.log('Name: ' + profile.getName());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+
+    this.spinnerService.show();
+    this._loginsignupservice.signinusergoogle(userdata).subscribe(
+      (data:any) => {
+        this.data = data;
+        this.spinnerService.hide();
+        this.userid = this.data._id;
+        this.router.navigate(["userconsole/buses", this.userid]);
+      },
+      err => console.log(err)
+    );
+  }
+
   onSubmit(formValue: any){
     let userdata = {
     mail : formValue.email,

@@ -4,7 +4,7 @@ var mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect("mongodb://localhost:27017/menagerie", {useMongoClient: true});
+mongoose.connect("mongodb://kapoor-rakshit:kapoorrakshit1@ds255403.mlab.com:55403/menagerie", {useMongoClient: true});
 
 var db = mongoose.connection;
 
@@ -93,6 +93,45 @@ router.post("/user", function(request, response){
 		console.log(err);
 	})
 
+});
+
+
+router.post("/newgoogleuser", function(request, response){
+	var mail = request.body.mail;
+	var pass = request.body.pass;
+	var firstname = request.body.firstname;
+	var lastname = request.body.lastname;
+	var location = request.body.location;
+	var mobile = request.body.mobile;
+
+	var query = usercollection.findOne({email: mail});
+	query.exec()
+		.then((data) => {
+			if(data == null){
+			var newdocument = new usercollection({
+				email: mail,
+				password: pass,
+				firstname: firstname,
+				lastname: lastname,
+				location: location,
+				mobile: mobile
+			});
+
+			newdocument.save(function(err, data){
+				if(err) console.log(err);
+				else {
+					console.log("DATA ADDED");
+					response.json({"_id": data._id});
+				}
+			});
+			}
+			else{
+				response.json({"_id": data._id});
+			}
+		})
+		.catch((err) => {
+			console.log(err);
+		})
 });
 
 

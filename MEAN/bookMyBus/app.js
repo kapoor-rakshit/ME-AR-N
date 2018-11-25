@@ -51,8 +51,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(5000);
+app.listen(process.env.PORT);             // run on user specified PORT during DEVELOPMENT
+                                         //  PRODUCTION and DEPLOYMENT env , default 3000 port
 
-console.log("EXPRESS server up and RUNNING on port 5000 of 127.0.0.1");
+console.log("EXPRESS server up and RUNNING on port 3000 of 127.0.0.1");
 
 module.exports = app;

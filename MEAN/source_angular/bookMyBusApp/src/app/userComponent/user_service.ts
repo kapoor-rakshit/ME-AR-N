@@ -4,7 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class UserService{
 
-    private _userUrl = "http://localhost:5000/userconsole";     /* URL of Express server */
+    private _userUrl = "/userconsole";     /* URL of Express server in PRODUCTION build */
+                                          /* give absolute URL ie localhost:3000/userconsole in DEV */
 
     private httpOptions = {
         headers: new HttpHeaders({
@@ -38,8 +39,8 @@ export class UserService{
         return this._http.get(this._userUrl+"/buses/"+userid+"/"+id+"/"+date+"/"+routeno);
     }
 
-    bookBus(newBooking, userid, id){
-        return this._http.post(this._userUrl+"/buses/"+userid+"/"+id, newBooking, this.httpOptions);
+    bookBus(newBooking, userid, id, razorpay_id, amountval){
+        return this._http.post(this._userUrl+"/buses/"+userid+"/"+id+"/"+razorpay_id+"/"+amountval, newBooking, this.httpOptions);
     }
 
 }

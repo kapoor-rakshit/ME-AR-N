@@ -3,12 +3,22 @@
 <head>
   <meta charset="utf-8">
   <title>BookMyBus</title>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+  <script>
+    function init(){
+      gapi.load('auth2', function(){
+        gapi.auth2.init();
+      });
+    }
+  </script>
   <base href="/">
 
+  <meta name="google-signin-client_id" content="176921950275-qqivchc2tctm03dvai8f1ls6gmifn4u9.apps.googleusercontent.com">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="stylesheet" href="styles.e51fb2e6abec49d67568.css"></head>
 <body>
   <app-root></app-root>
-<script type="text/javascript" src="runtime.a66f828dca56eeb90e02.js"></script><script type="text/javascript" src="polyfills.2f4a59095805af02bd79.js"></script><script type="text/javascript" src="main.af802a5827c4d583fb9e.js"></script></body>
+<script type="text/javascript" src="runtime.a66f828dca56eeb90e02.js"></script><script type="text/javascript" src="polyfills.2f4a59095805af02bd79.js"></script><script type="text/javascript" src="main.67ef75a9c85ad09b2da5.js"></script></body>
 </html>
