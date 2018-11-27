@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
+declare var gapi: any; 
+
 @Component({
   templateUrl: './usersignup.html'
 })
@@ -21,14 +23,7 @@ export class UserSignup implements OnInit{
   data: any = {};
   userid: any;
 
-  constructor(private _loginsignupservice: loginsignupService, private router: Router, private spinnerService: Ng4LoadingSpinnerService) { }
-
-  ngOnInit(){
-  }
-
-  toggleshow(){
-    this.show = !this.show;
-  }
+  constructor(private _loginsignupservice: loginsignupService, private router: Router, private spinnerService: Ng4LoadingSpinnerService) {}
 
   onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
@@ -48,13 +43,29 @@ export class UserSignup implements OnInit{
     this._loginsignupservice.signinusergoogle(userdata).subscribe(
       (data:any) => {
         this.data = data;
-        this.spinnerService.hide();
         this.userid = this.data._id;
+        this.spinnerService.hide();
         this.router.navigate(["userconsole/buses", this.userid]);
       },
       err => console.log(err)
     );
   }
+
+  ngOnInit(){
+    gapi.signin2.render('signinbt', {
+      'scope': 'profile email',
+      'width': 240,
+      'height': 50,
+      'longtitle': true,
+      'theme': 'dark',
+      'onsuccess': this.onSignIn
+    });
+  }
+
+  toggleshow(){
+    this.show = !this.show;
+  }
+
 
   onSubmit(formValue: any){
     let userdata = {
