@@ -5,8 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+																 // UNCOMMENT in DEVELOPMENT
+var cors = require("cors");                                   // to be commented in PRODUCTION BUILD
+
 var index = require('./routes/index');
-var users = require('./routes/users');
 
 var app = express();
 
@@ -22,8 +24,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+																// UNCOMMENT in DEVELOPMENT
+app.use(cors());                                              // to be commented in PRODUCTION BUILD
+               // to be USED here before other use() statements
+
 app.use('/', index);
-app.use('/users', users);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,4 +49,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.listen(5000);             // run on user specified PORT during DEVELOPMENT
+                                         //  PRODUCTION and DEPLOYMENT env , default 3000 port ie process.env.PORT
+
+console.log("EXPRESS server up and RUNNING on port 5000 of 127.0.0.1");
+
 module.exports = app;
+
