@@ -1,0 +1,42 @@
+<h3>{{title}} - {{companyNameFromParent}}</h3>
+<table class="table table-striped table-hover" *ngIf="productsData && productsData.length">
+  <thead>
+    <tr>
+      <th scope="col">{{nameHeader}}</th>
+      <th scope="col">{{quantityHeader}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of productsData">
+        <td><a [routerLink]="['/products',p.id]">{{p.name}}</a></td>
+        <td>{{p.quantity}}</td>
+    </tr>
+  </tbody>
+</table>
+<form #formRef="ngForm" (ngSubmit)="onSubmit(formRef.value)">
+    <div class="form-group">
+        <label for="nameID" class="lbnaam">Name</label>
+        <input type="text" id="nameID" class="naamInput form-control" name="naam" [(ngModel)]="nameModel" required minlength="3" #nameRef="ngModel"/>
+        <div *ngIf="nameRef.invalid && (nameRef.dirty || nameRef.touched)" class="naamInput alert alert-danger">
+            <div *ngIf="nameRef.errors.required">
+                Name of product is required.
+            </div>
+            <div *ngIf="nameRef.errors.minlength">
+                Name of product must be at least 3 characters long.
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="quantityID" class="lbquant">Quantity</label>
+        <input type="number" id="quantityID" name="quant" class="quantInput form-control" pattern="^[1-9]\d*$" [(ngModel)]="quantityModel" required #quantityRef="ngModel"/>
+        <div *ngIf="quantityRef.invalid && (quantityRef.dirty || quantityRef.touched)" class="quantInput alert alert-danger">
+            <div *ngIf="quantityRef.errors.required">
+                Quantity of product is required.
+            </div>
+            <div *ngIf="quantityRef.errors.pattern">
+                enter positive value of quantity.
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="sbbt btn btn-info" [disabled]="formRef.invalid" [ngClass]="{'pointerINVALID':formRef.invalid}">Submit</button>
+</form>

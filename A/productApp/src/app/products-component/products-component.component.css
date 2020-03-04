@@ -1,0 +1,30 @@
+.sbbt {
+    float: right;
+    margin-right: 50%;
+}
+
+.naamInput{
+    width: 50%;
+    margin: auto;
+}
+
+.quantInput {
+    width: 50%;
+    margin: auto;
+}
+
+.lbnaam {
+    margin-left: 20%;
+}
+
+.lbquant {
+    margin-left: 20%;
+}
+
+.pointerINVALID {
+    cursor: not-allowed;
+}
+
+td, th {
+    text-align: center;
+}

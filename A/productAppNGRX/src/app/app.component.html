@@ -1,0 +1,6 @@
+<h3 class="text-danger">Parent Component - AppComponent</h3>
+<h4 class="text-danger" *ngIf="disp">Recently added product : {{product.name}} , {{product.quantity}}</h4>
+
+<hr/>
+
+<app-product-module [companyNameVARForParent]="companyNaam" (product)='receiveProduct($event)' (recentProductShow)='receiveRecentProductShow($event)'>Sorry. not available now.</app-product-module>

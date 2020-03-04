@@ -1,0 +1,22 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:lightcyan;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" [routerLink]="['/']">ProductApp</a>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <a class="nav-item nav-link" [routerLink]="['/']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">About</a>
+            <a class="nav-item nav-link" [routerLink]="['/products']" [routerLinkActive]="['active']">Products</a>
+        </div>
+    </div>
+</nav>
+<div class="lds-roller" *ngIf="isLoading"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+<router-outlet></router-outlet>
+
+<!-- <h3 class="text-danger">Parent Component - AppComponent</h3>
+<h4 class="text-danger" *ngIf="disp">Recently added product : {{p.name}} , {{p.quantity}}</h4>
+
+<hr/>
+<br/><br/>
+
+<app-products-component (emitDispRecentAdded)="receiveDisp($event)" (emitProductToParent)="receiveMessage($event)" [varForParent-Company]="companyName">Sorry. not available now.</app-products-component> -->

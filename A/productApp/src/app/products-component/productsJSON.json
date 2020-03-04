@@ -1,0 +1,39 @@
+{
+  "products": [
+    {
+      "name": "iPod",
+      "quantity": 1,
+      "id": 1
+    },
+    {
+      "name": "iPad",
+      "quantity": 2,
+      "id": 2
+    },
+    {
+      "name": "IPhone",
+      "quantity": 3,
+      "id": 3
+    },
+    {
+      "name": "Fitbit",
+      "quantity": 4,
+      "id": 4
+    },
+    {
+      "name": "wipro",
+      "quantity": 1,
+      "id": 5
+    },
+    {
+      "name": "nagarro",
+      "quantity": 2,
+      "id": 6
+    },
+    {
+      "name": "nike",
+      "quantity": 4,
+      "id": 7
+    }
+  ]
+}
