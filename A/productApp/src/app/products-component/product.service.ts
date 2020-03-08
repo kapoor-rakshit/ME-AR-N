@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ProductService {
 
-  private _productsUrl = "http://localhost:3000/products";     /* URL of JSON server + name of key having array */
+  public _productsUrl = "http://localhost:3000/products";     /* URL of JSON server + name of key having array */
   private httpOptions = {
     headers: new HttpHeaders({
     'Content-Type':  'application/json'

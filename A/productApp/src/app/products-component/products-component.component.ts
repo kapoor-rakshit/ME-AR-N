@@ -25,12 +25,13 @@ export class ProductsComponentComponent implements OnInit {
   @ViewChild("formRef", {static: false}) addProductFormReference: NgForm; 
 
   constructor(private _productsService: ProductService, private _route: ActivatedRoute) {
-    this.productsData = this._route.snapshot.data['productsFromRoute'];
     this.title = "ProductApp";
     this.companyNameFromParent = "Wipro";
   }
 
   ngOnInit() {
+    this.productsData = this._route.snapshot.data['productsFromRoute'];    // comment when performing TDD
+    // this.getProducts();                                                      // uncomment when performing TDD
   }
 
   getProducts(){
