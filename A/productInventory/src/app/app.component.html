@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" [routerLink]="['/']">{{title}}</a>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <a class="nav-item nav-link text-light" [routerLink]="['/']" [routerLinkActive]="['activeNav']" [routerLinkActiveOptions]="{exact:true}">Home</a>
+      <a class="nav-item nav-link text-light" [routerLink]="['/productinventory']" [routerLinkActive]="['activeNav']">Inventory</a>
+    </div>
+    <a class="nav-item nav-link floatRight" *ngIf="!isLoggedIn" [routerLink]="['/auth/signup']" [routerLinkActive]="['activeNav']"><button class="btn btn-outline-light">Sign up</button></a>
+    <a class="nav-item nav-link floatRight text-light" *ngIf="!isLoggedIn" [routerLink]="['/auth/login']" [routerLinkActive]="['activeNav']">Sign in</a>
+    <a class="nav-item nav-link floatRight text-light" *ngIf="isLoggedIn" [routerLink]="['auth/userdetails', idofuser]" [routerLinkActive]="['activeNav']">{{nameofuser}}</a>
+    <button class="nav-item btn btn-outline-light floatRight" *ngIf="isLoggedIn" (click)="logOut()">Log out</button>
+  </div>
+</nav>
+<router-outlet></router-outlet>

@@ -1,0 +1,12 @@
+a.activeNav {
+    font-weight: bold; 
+    color:yellow !important;
+}
+
+.floatRight {
+    float: right;
+}
+
+.navbar {
+    background-color: #003E88;
+}

@@ -1,0 +1,59 @@
+<br/><br/>
+<fieldset>
+    <legend>Register</legend>
+    <form [formGroup]="signUpForm" (ngSubmit)="OnFormSubmit()">
+        <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput [formControlName]="['emailInput']" type="email" placeholder="email"/>
+            <mat-error *ngIf="emailInputRef.invalid && (emailInputRef.touched || emailInputRef.dirty) && emailInputRef.errors.required">Email is <b>required</b></mat-error>
+            <mat-error *ngIf="emailInputRef.invalid && (emailInputRef.touched || emailInputRef.dirty) && emailInputRef.errors.email">Invalid <b>email</b></mat-error>
+        </mat-form-field>
+        <br/><br/>
+        <mat-form-field class="full-width">
+            <mat-label>Password</mat-label>
+            <input matInput [formControlName]="['passwordInput']" type="password" placeholder="password"/>
+            <mat-error *ngIf="passwordInputRef.invalid && (passwordInputRef.touched || passwordInputRef.dirty) && passwordInputRef.errors.required">Password is <b>required</b></mat-error>
+            <mat-error *ngIf="passwordInputRef.invalid && (passwordInputRef.touched || passwordInputRef.dirty) && passwordInputRef.errors.minlength">Password must be atleast <b>6 characters</b></mat-error>
+        </mat-form-field>
+        <br/><br/>
+        <mat-form-field class="full-width">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput [formControlName]="['confirmPasswordInput']" type="password" placeholder="password again"/>
+            <mat-error *ngIf="confirmPasswordInputRef.invalid && (confirmPasswordInputRef.touched || confirmPasswordInputRef.dirty) && confirmPasswordInputRef.errors.required">Please <b>confirm password</b></mat-error>
+            <mat-error *ngIf="confirmPasswordInputRef.invalid && confirmPasswordInputRef.errors.unequal">Passwords must <b>match</b></mat-error>
+        </mat-form-field>
+        <br/><br/>
+        <mat-form-field class="full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput [formControlName]="['firstnameInput']" type="text" placeholder="first name"/>
+            <mat-error *ngIf="firstnameInputRef.invalid && (firstnameInputRef.touched || firstnameInputRef.dirty) && firstnameInputRef.errors.required">First name is <b>required</b></mat-error>
+            <mat-error *ngIf="firstnameInputRef.invalid && (firstnameInputRef.touched || firstnameInputRef.dirty) && firstnameInputRef.errors.minlength">First name must be atleast <b>3 characters</b></mat-error>
+        </mat-form-field>
+        <br/><br/>
+        <mat-form-field class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput [formControlName]="['lastnameInput']" type="text" placeholder="last name"/>
+            <mat-error *ngIf="lastnameInputRef.invalid && (lastnameInputRef.touched || lastnameInputRef.dirty) && lastnameInputRef.errors.required">Last name is <b>required</b></mat-error>
+            <mat-error *ngIf="lastnameInputRef.invalid && (lastnameInputRef.touched || lastnameInputRef.dirty) && lastnameInputRef.errors.minlength">Last name must be atleast <b>3 characters</b></mat-error>
+        </mat-form-field>
+        <br/><br/>
+        <mat-form-field class="full-width">
+            <mat-label>Location</mat-label>
+            <input matInput [formControlName]="['locationInput']" type="text" placeholder="location"/>
+            <mat-error *ngIf="locationInputRef.invalid && (locationInputRef.touched || locationInputRef.dirty) && locationInputRef.errors.required">Location is <b>required</b></mat-error>
+            <mat-error *ngIf="locationInputRef.invalid && (locationInputRef.touched || locationInputRef.dirty) && locationInputRef.errors.minlength">Location must be atleast <b>3 characters</b></mat-error>
+        </mat-form-field>
+        <br/><br/>
+        <mat-form-field class="full-width">
+            <mat-label>Mobile number</mat-label>
+            <input matInput [formControlName]="['mobileNumberInput']" type="number" pattern="^[1-9]\d{9}$" placeholder="mobile number"/>
+            <mat-error *ngIf="mobileNumberInputRef.invalid && (mobileNumberInputRef.touched || mobileNumberInputRef.dirty) && mobileNumberInputRef.errors.required">Mobile number is <b>required</b></mat-error>
+            <mat-error *ngIf="mobileNumberInputRef.invalid && (mobileNumberInputRef.touched || mobileNumberInputRef.dirty) && mobileNumberInputRef.errors.pattern">Invalid <b>mobile number</b></mat-error>
+        </mat-form-field>
+        <br/><br/>
+        <button mat-raised-button color="primary" [disabled]="signUpForm.invalid" type="submit">Submit</button>
+        <br/><br/><br/>
+        <a [routerLink]="['/auth/login']"><b>Already a registered user ? Login.</b></a>
+        <br/><br/><br/>
+    </form>
+</fieldset>
