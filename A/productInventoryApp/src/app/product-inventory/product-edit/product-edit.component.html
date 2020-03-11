@@ -1,1 +1,42 @@
-<p>product-edit works!</p>
+<br/><br/>
+<fieldset>
+    <legend>Edit Product</legend>
+    <form [formGroup]="editProductForm" (ngSubmit)="OnFormSubmit()">
+        <mat-form-field class="full-width">
+            <mat-label>Name of Product</mat-label>
+            <input matInput [formControlName]="['nameInput']" type="text" placeholder="name" [value]="nameFromServer"/>
+            <mat-error *ngIf="nameInputRef.invalid && (nameInputRef.touched || nameInputRef.dirty) && nameInputRef.errors.required">Name of product is <b>required</b></mat-error>
+            <mat-error *ngIf="nameInputRef.invalid && (nameInputRef.touched || nameInputRef.dirty) && nameInputRef.errors.minlength">Name of product must be <b>atleast 3 characters</b></mat-error>
+        </mat-form-field>
+        <br/><br/>
+        <mat-form-field class="full-width">
+            <mat-label>Description</mat-label>
+            <input matInput [formControlName]="['descriptionInput']" type="text" placeholder="description" [value]="descFromServer"/>
+            <mat-error *ngIf="descriptionInputRef.invalid && (descriptionInputRef.touched || descriptionInputRef.dirty) && descriptionInputRef.errors.required">Description of product is <b>required</b></mat-error>
+            <mat-error *ngIf="descriptionInputRef.invalid && (descriptionInputRef.touched || descriptionInputRef.dirty) && descriptionInputRef.errors.minlength">Description of product must be <b>atleast 3 characters</b></mat-error>
+        </mat-form-field>
+        <br/><br/>
+        <mat-form-field class="full-width">
+            <mat-label>Manufacturer</mat-label>
+            <input matInput [formControlName]="['manufacturerInput']" type="text" placeholder="manufacturer" [value]="manfFromServer"/>
+            <mat-error *ngIf="manufacturerInputRef.invalid && (manufacturerInputRef.touched || manufacturerInputRef.dirty) && manufacturerInputRef.errors.required">Manufacturer's name is <b>required</b></mat-error>
+            <mat-error *ngIf="manufacturerInputRef.invalid && (manufacturerInputRef.touched || manufacturerInputRef.dirty) && manufacturerInputRef.errors.minlength">Manufacturer's name must be <b>atleast 3 characters</b></mat-error>
+        </mat-form-field>
+        <br/><br/>
+        <mat-form-field class="full-width">
+            <mat-label>Price</mat-label>
+            <input matInput [formControlName]="['priceInput']" type="number" placeholder="price" [value]="priceFromServer"/>
+            <mat-error *ngIf="priceInputRef.invalid && (priceInputRef.touched || priceInputRef.dirty) && priceInputRef.errors.required">Price of product is <b>required</b></mat-error>
+        </mat-form-field>
+        <br/><br/>
+        <mat-form-field class="full-width">
+            <mat-label>Quantity</mat-label>
+            <input matInput [formControlName]="['quantityInput']" type="number" placeholder="quantity" pattern="^[1-9]\d*$" [value]="quantFromServer"/>
+            <mat-error *ngIf="quantityInputRef.invalid && (quantityInputRef.touched || quantityInputRef.dirty) && quantityInputRef.errors.required">Quantity of product is <b>required</b></mat-error>
+            <mat-error *ngIf="quantityInputRef.invalid && (quantityInputRef.touched || quantityInputRef.dirty) && quantityInputRef.errors.pattern">Quantity of product must be <b>positive</b></mat-error>
+        </mat-form-field>
+        <br/><br/>
+        <button mat-raised-button color="primary" [disabled]="editProductForm.invalid" type="submit">Edit Product</button>
+        <br/><br/><br/>
+    </form>
+</fieldset>

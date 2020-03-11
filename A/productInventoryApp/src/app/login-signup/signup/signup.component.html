@@ -51,7 +51,7 @@
             <mat-error *ngIf="mobileNumberInputRef.invalid && (mobileNumberInputRef.touched || mobileNumberInputRef.dirty) && mobileNumberInputRef.errors.pattern">Invalid <b>mobile number</b></mat-error>
         </mat-form-field>
         <br/><br/>
-        <button mat-raised-button color="primary" [disabled]="signUpForm.invalid" type="submit">Submit</button>
+        <button mat-raised-button color="primary" [disabled]="signUpForm.invalid" type="submit">Sign up</button>
         <br/><br/><br/>
         <a [routerLink]="['/auth/login']"><b>Already a registered user ? Login.</b></a>
         <br/><br/><br/>

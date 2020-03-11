@@ -1,1 +1,26 @@
-<p>user-detail works!</p>
+<br/><br/>
+<fieldset>
+    <legend>My details</legend>
+    <form>
+        <mat-form-field class="full-width">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="first name" [value]="firstName">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="last name" [value]="lastName">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="email" [value]="email" disabled="true">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Location</mat-label>
+            <input matInput placeholder="location" [value]="location">
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Mobile Number</mat-label>
+            <input matInput placeholder="mobile number" [value]="mobileNumber">
+        </mat-form-field>
+    </form>
+</fieldset>

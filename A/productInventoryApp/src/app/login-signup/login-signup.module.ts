@@ -5,6 +5,7 @@ import { SignupComponent } from './signup/signup.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';

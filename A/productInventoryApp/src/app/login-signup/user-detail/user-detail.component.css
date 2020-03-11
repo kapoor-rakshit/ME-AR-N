@@ -1,0 +1,10 @@
+fieldset {
+    min-width: 150px;
+    max-width: 500px;
+    margin: auto;
+    padding: 5px;
+  }
+
+.full-width {
+    width: 100%;
+}
