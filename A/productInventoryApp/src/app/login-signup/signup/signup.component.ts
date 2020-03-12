@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
 import { AppComponent } from 'src/app/app.component';
 import { Router } from '@angular/router';
+import { User } from '../user';
+import { AuthService } from '../auth.service';
 
 const checkPasswords: ValidatorFn = (fg: FormGroup) => {
   const password = fg.controls['passwordInput'];
@@ -40,7 +42,9 @@ export class SignupComponent implements OnInit, OnDestroy {
   componentActive: boolean;
   signUpForm: FormGroup;
 
-  constructor(private _fb: FormBuilder, private _router: Router) { }
+  allUsers: User[];
+
+  constructor(private _fb: FormBuilder, private _router: Router, private _authService: AuthService) { }
 
   ngOnInit() {
     // to prevent memory leaks , to subscribe till it is TRUE
@@ -55,6 +59,15 @@ export class SignupComponent implements OnInit, OnDestroy {
       locationInput: ['', [Validators.required, Validators.minLength(3)]],
       mobileNumberInput: ['', [Validators.required]] 
     }, {validator: checkPasswords});
+
+    this._authService.getAllUsers().subscribe(
+      (data: User[]) => {
+        this.allUsers = data;
+      },
+      (err: Error) => {
+        console.log(`${err.message}`);
+      }
+    );
   }
 
   get emailInputRef() {
@@ -93,12 +106,35 @@ export class SignupComponent implements OnInit, OnDestroy {
     let locationFromForm = this.locationInputRef.value;
     let mobilenumberFromForm = this.mobileNumberInputRef.value;
 
-    //on successful signup , set values
-    AppComponent.isLoggedInForNav = true;
-    AppComponent.nameofuserForNav = "ra20024024";
-    AppComponent.idofuserForNav = "1";
-    // important to navigate for isloggedIn param to be checked
-    this._router.navigate(['/']);
+    let newUser = {emailId: emailFromForm, password: passwordFromForm, firstName: firstnameFromForm, lastName: lastnameFromForm, location: locationFromForm, mobileNumber: mobilenumberFromForm};
+
+    let successfulSignUp: boolean = true;
+
+    for(let user of this.allUsers) {
+      if(user.emailId == emailFromForm) {
+        successfulSignUp = false;
+        break;
+      }
+    }
+
+    if(successfulSignUp) {
+      this._authService.addUser(newUser).subscribe(
+        (data: User) => {
+          //on successful signup , set values
+          AppComponent.isLoggedInForNav = true;
+          AppComponent.nameofuserForNav = data.firstName;
+          AppComponent.idofuserForNav = data.id;
+          // important to navigate for isloggedIn param to be checked
+          this._router.navigate(['/']);
+        },
+        (err: Error) => {
+          console.log(`${err.message}`);
+        }
+      );
+    }
+    else {
+      alert(`User with email ${emailFromForm} already exists`);
+    }
   }
 
   ngOnDestroy(){

@@ -11,10 +11,10 @@ export class AppComponent {
   title = 'ProductInventoryApp';
   static isLoggedInForNav: boolean = false;
   static nameofuserForNav: string = "USER's NAME";
-  static idofuserForNav: string = "1";
+  static idofuserForNav: number = 1;
   isLoggedIn: boolean;
   nameofuser: string;
-  idofuser: string;
+  idofuser: number;
 
   constructor(private _router: Router) {
     this._router.events.subscribe((event: Event) => {

@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
+import { AuthService } from '../auth.service';
+import { User } from '../user';
 
 const checkInputs: ValidatorFn = (fg: FormGroup) => {
   const password = fg.controls['passwordInput'];
@@ -19,8 +21,9 @@ const checkInputs: ValidatorFn = (fg: FormGroup) => {
 export class LoginComponent implements OnInit, OnDestroy {
   componentActive: boolean;
   loginForm: FormGroup;
+  allUsers: User[];
 
-  constructor(private _fb: FormBuilder, private _router: Router) { }
+  constructor(private _fb: FormBuilder, private _router: Router, private _authService: AuthService) { }
 
   ngOnInit() {
     // to prevent memory leaks , to subscribe till it is TRUE
@@ -30,6 +33,14 @@ export class LoginComponent implements OnInit, OnDestroy {
       emailInput: ['', [Validators.required, Validators.email]],
       passwordInput: ['', [Validators.required, Validators.minLength(6)]]
     }, {validator: checkInputs});
+
+    this._authService.getAllUsers().subscribe(
+      (data: User[]) => {
+        this.allUsers = data;
+      },
+      (err: Error) => {
+        console.log(`${err.message}`);
+      });
   }
 
   get emailInputRef() {
@@ -43,14 +54,31 @@ export class LoginComponent implements OnInit, OnDestroy {
   OnFormSubmit() {
     let emailFromForm = this.emailInputRef.value;
     let passwordFromForm = this.passwordInputRef.value;
-    console.log(`${emailFromForm} : ${passwordFromForm}`);
-    
-    //on successful login , set values
-    AppComponent.isLoggedInForNav = true;
-    AppComponent.nameofuserForNav = "ra20024024";
-    AppComponent.idofuserForNav = "1";
-    // important to navigate for loggedIn param to be checked
-    this._router.navigate(['/']);
+    let successfulLogin: boolean = false;
+    let nameofUser: string = "";
+    let idofUser: number;
+    // console.log(`${emailFromForm} : ${passwordFromForm}`);
+
+    for(let user of this.allUsers) {
+      if(user.emailId == emailFromForm && user.password == passwordFromForm) {
+        nameofUser = user.firstName;
+        idofUser = user.id;
+        successfulLogin = true;
+        break;
+      }
+    }
+
+     //on successful login , set values
+    if(successfulLogin) {
+      AppComponent.isLoggedInForNav = true;
+      AppComponent.nameofuserForNav = nameofUser;
+      AppComponent.idofuserForNav = idofUser;
+      // important to navigate for loggedIn param to be checked
+      this._router.navigate(['/']);
+    } 
+    else {
+      alert("INVALID credentials. Try again.");
+    }
   }
 
   ngOnDestroy(){

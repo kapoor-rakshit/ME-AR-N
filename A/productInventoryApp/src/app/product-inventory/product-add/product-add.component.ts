@@ -2,29 +2,28 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 
-const checkInputs: ValidatorFn = (fg: FormGroup) => {
+const checkAddProdInputs: ValidatorFn = (fg: FormGroup) => {
   const name = fg.controls['nameInput'];
   const desc = fg.controls['descriptionInput'];
   const manf = fg.controls['manufacturerInput'];
   const price = fg.controls['priceInput'];
   const quant = fg.controls['quantityInput'];
 
-  if(name.value.trim() == "") {
+  if(name.valid && name.value.trim() == "") {
     name.setErrors({required: true});
   }
-  if(desc.value.trim() == "") {
+  if(desc.valid && desc.value.trim() == "") {
     desc.setErrors({required: true});
   }
-  if(manf.value.trim() == "") {
+  if(manf.valid && manf.value.trim() == "") {
     manf.setErrors({required: true});
   }
-  if(price.value.trim() == "") {
+  if(price.valid && price.value.trim() == "") {
     price.setErrors({required: true});
   }
-  if(quant.value.trim() == "") {
+  if(quant.valid && quant.value.trim() == "") {
     quant.setErrors({required: true});
   }
-
   return null;
 }
 
@@ -49,7 +48,7 @@ export class ProductAddComponent implements OnInit, OnDestroy {
       manufacturerInput: ['', [Validators.required, Validators.minLength(3)]],
       priceInput: ['', [Validators.required]],
       quantityInput: ['', [Validators.required]]
-    }, {validator: checkInputs});
+    });
 
   }
 

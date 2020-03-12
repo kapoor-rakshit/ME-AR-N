@@ -4,23 +4,23 @@
     <form>
         <mat-form-field class="full-width">
             <mat-label>First Name</mat-label>
-            <input matInput placeholder="first name" [value]="firstName">
+            <input matInput placeholder="first name" [(ngModel)]="firstName" name="firstnaam">
         </mat-form-field>
         <mat-form-field class="full-width">
             <mat-label>Last Name</mat-label>
-            <input matInput placeholder="last name" [value]="lastName">
+            <input matInput placeholder="last name" [(ngModel)]="lastName" name="lastnaam">
         </mat-form-field>
         <mat-form-field class="full-width">
             <mat-label>Email</mat-label>
-            <input matInput placeholder="email" [value]="email" disabled="true">
+            <input matInput placeholder="email" [(ngModel)]="email" disabled="true" name="email">
         </mat-form-field>
         <mat-form-field class="full-width">
             <mat-label>Location</mat-label>
-            <input matInput placeholder="location" [value]="location">
+            <input matInput placeholder="location" [(ngModel)]="location" name="loc">
         </mat-form-field>
         <mat-form-field class="full-width">
             <mat-label>Mobile Number</mat-label>
-            <input matInput placeholder="mobile number" [value]="mobileNumber">
+            <input matInput placeholder="mobile number" [(ngModel)]="mobileNumber" name="mobile">
         </mat-form-field>
     </form>
 </fieldset>

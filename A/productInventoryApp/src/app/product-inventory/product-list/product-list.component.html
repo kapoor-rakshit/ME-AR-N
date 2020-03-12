@@ -1,6 +1,34 @@
-<table mat-table [dataSource]="products" matSort class="mat-elevation-z8">
+<div class="paddingContent">
+<h3>Headers required</h3>
+<mat-checkbox (change)="chkcolumns()" [(ngModel)]="nameDisp">Name</mat-checkbox><br/>
+<mat-checkbox (change)="chkcolumns()" [(ngModel)]="descriptionDisp">Description</mat-checkbox><br/>
+<mat-checkbox (change)="chkcolumns()"[(ngModel)]="manufacturerDisp">Manufacturer</mat-checkbox><br/>
+<mat-checkbox (change)="chkcolumns()" [(ngModel)]="priceDisp">Price</mat-checkbox><br/>
+<mat-checkbox (change)="chkcolumns()" [(ngModel)]="quantityDisp">Quantity</mat-checkbox><br/>
+
+<a [routerLink]="['/productinventory/product/add']"><button class="btn btn-success floatRight">Add Product</button></a>
+<a [routerLink]="['topproducts']"><button class="btn btn-outline-primary floatRight marginRight">Top products</button></a>
+
+<mat-form-field>
+  <mat-label>Search</mat-label>
+  <input matInput type="text" (keyup)="applyFilter($event)" placeholder="search">
+</mat-form-field>
+
+<table mat-table matSort [dataSource]="products" class="mat-elevation-z8">
     <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
       
         <!-- Quantity Column -->
         <ng-container matColumnDef="quantity">
@@ -11,7 +39,7 @@
         <!-- Name Column -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-          <td mat-cell *matCellDef="let element">{{element.name}}</td>
+          <td mat-cell *matCellDef="let element"><a [routerLink]="['product/detail', element.id]" (click)="incCounter(element.id)">{{element.name}}</a></td>
         </ng-container>
 
         <!-- Description Column -->
@@ -31,8 +59,21 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
             <td mat-cell *matCellDef="let element">{{element.price}}</td>
         </ng-container>
+
+        <!-- Edit Column -->
+        <ng-container matColumnDef="editbtns">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element"><a [routerLink]="['product/edit', element.id]"><button mat-raised-button color="primary" [disabled]="editDisabled">Edit</button></a></td>
+        </ng-container>
+
+        <!-- Delete Column -->
+        <ng-container matColumnDef="delbtns">
+          <th mat-header-cell *matHeaderCellDef><button mat-raised-button color="warn" (click)="deleteSelected()" [disabled]="deleteDisabled">Delete selected</button></th>
+          <td mat-cell *matCellDef="let element"><button mat-raised-button color="warn" (click)="delete()" [disabled]="deleteDisabled">Delete</button></td>
+        </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
 </table>
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

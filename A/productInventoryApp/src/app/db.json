@@ -1,0 +1,10 @@
+{
+    "users" : [
+        {"id" : 1, "emailId" : "kapoor@wipro", "password" : "password", "firstName" : "Rakshit", "lastName" : "Kapoor", "location" : "ASR", "mobileNumber" : 9090},
+        {"id" : 2, "emailId" : "kapoor@nagarro", "password" : "password", "firstName" : "Adhish", "lastName" : "Kapoor", "location" : "ASR", "mobileNumber" : 8080}
+    ],
+    "products" : [
+        {},
+        {}
+    ]
+}

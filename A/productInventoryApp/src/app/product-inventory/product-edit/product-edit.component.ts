@@ -37,8 +37,8 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   nameFromServer: string = "Product's name";
   descFromServer: string = "Product's description";
   manfFromServer: string = "Product's manufacturer";
-  priceFromServer: string = "Product's price";
-  quantFromServer: string = "Product's quantity";
+  priceFromServer: number = 9025;
+  quantFromServer: number = 1089;
 
   componentActive: boolean;
   editProductForm: FormGroup;
@@ -61,7 +61,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
       manufacturerInput: ['', [Validators.required, Validators.minLength(3)]],
       priceInput: ['', [Validators.required]],
       quantityInput: ['', [Validators.required]]
-    }, {validator: checkInputs});
+    });
 
      // get details of a product using id and populate productData
 
