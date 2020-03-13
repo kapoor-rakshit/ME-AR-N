@@ -1,10 +1,69 @@
 {
-    "users" : [
-        {"id" : 1, "emailId" : "kapoor@wipro", "password" : "password", "firstName" : "Rakshit", "lastName" : "Kapoor", "location" : "ASR", "mobileNumber" : 9090},
-        {"id" : 2, "emailId" : "kapoor@nagarro", "password" : "password", "firstName" : "Adhish", "lastName" : "Kapoor", "location" : "ASR", "mobileNumber" : 8080}
-    ],
-    "products" : [
-        {},
-        {}
-    ]
+  "users": [
+    {
+      "id": 1,
+      "emailId": "kapoor@wipro",
+      "password": "password",
+      "firstName": "Rakshit",
+      "lastName": "Kapoor",
+      "location": "ASR",
+      "mobileNumber": 9090
+    },
+    {
+      "id": 2,
+      "emailId": "kapoor@nagarro",
+      "password": "password",
+      "firstName": "Adhish",
+      "lastName": "Kapoor",
+      "location": "ASR",
+      "mobileNumber": 8080
+    },
+    {
+      "emailId": "newuser@wipro",
+      "password": "qazwsx",
+      "firstName": "Test",
+      "lastName": "User",
+      "location": "GNDC",
+      "mobileNumber": 8908777777,
+      "id": 3
+    },
+    {
+      "emailId": "newuser@nagarro",
+      "password": "qwerty",
+      "firstName": "Test",
+      "lastName": "user2",
+      "location": "gurugram",
+      "mobileNumber": 9090909077,
+      "id": 4
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "prod1",
+      "description": "nddn editing from ui not clicks",
+      "manufacturer": "ckvk",
+      "price": 56,
+      "quantity": 197,
+      "clicks": 5
+    },
+    {
+      "id": 3,
+      "name": "uoooo",
+      "description": "jkjk",
+      "manufacturer": "klll changed",
+      "price": 80,
+      "quantity": 34,
+      "clicks": 6
+    },
+    {
+      "name": "new prod",
+      "description": "jkll",
+      "manufacturer": "ffhgh",
+      "price": 45,
+      "quantity": 854,
+      "clicks": 6,
+      "id": 4
+    }
+  ]
 }

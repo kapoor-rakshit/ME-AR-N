@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ValidatorFn, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ProductService } from '../product.service';
+import { Product } from '../product';
 
 const checkInputs: ValidatorFn = (fg: FormGroup) => {
   const name = fg.controls['nameInput'];
@@ -43,9 +45,9 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   componentActive: boolean;
   editProductForm: FormGroup;
   id: any;
-  productData: any = {};
+  clicks: any;
 
-  constructor(private _fb: FormBuilder, private _router: Router, private route: ActivatedRoute) {
+  constructor(private _fb: FormBuilder, private _router: Router, private route: ActivatedRoute, private _productService: ProductService) {
     this.route.params.forEach((param: Params) => {
       this.id = +param['id'];
     });
@@ -64,7 +66,19 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     });
 
      // get details of a product using id and populate productData
-
+     this._productService.getProduct(this.id).subscribe(
+       (data: Product) => {
+        this.nameFromServer = data.name;
+        this.descFromServer = data.description;
+        this.manfFromServer = data.manufacturer;
+        this.priceFromServer = data.price;
+        this.quantFromServer = data.quantity;
+        this.clicks = data.clicks;
+       },
+       (err: Error) => {
+         console.log(`${err.message}`);
+       }
+     );
   }
 
   get nameInputRef() {
@@ -94,9 +108,18 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     let priceFromForm = this.priceInputRef.value;
     let quantFromForm = this.quantityInputRef.value;
 
-    // call to service for PUT request
+    let updatedProduct:Product = {id: this.id, name: nameFromForm, description: descFromForm, manufacturer: manfFromForm, price: priceFromForm, quantity: quantFromForm, clicks: this.clicks};
 
-    this._router.navigate(['/productinventory']);
+    // call to service for PUT request
+    this._productService.updateProduct(updatedProduct,this.id).subscribe(
+      (data: Product) => {
+        console.log(`UPDATED PRODUCT ==> ${JSON.stringify(data)}`);
+        this._router.navigate(['/productinventory']);
+      },
+      (err: Error) => {
+        console.log(`${err.message}`);
+      }
+    );
   }
 
   ngOnDestroy(){

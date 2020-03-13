@@ -6,6 +6,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { AppComponent } from 'src/app/app.component';
+import { ProductService } from '../product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -25,7 +27,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   editDisabled: boolean;
   deleteDisabled: boolean;
 
-  productsArr: Product[] = [];
+  productsArr: Product[];
   products = new MatTableDataSource<Product>(this.productsArr);
   selection = new SelectionModel<Product>(true, []);                        // (allowMultiSelect, initialSelection)
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -33,7 +35,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['select', 'name', 'description', 'manufacturer', 'price', 'quantity', 'editbtns', 'delbtns'];    
                               // NOTE : In order as desired, Same values as `matColumnDef` attr in HTML file
                               //        This is also same as data keys {{element.quantity}} for sorting to happen in MatTable
-  constructor() { }
+
+  constructor(private _productService: ProductService, private _router: Router) { }
 
   ngOnInit() {
     this.componentActive = true;
@@ -41,11 +44,20 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.editDisabled = !AppComponent.isLoggedInForNav;
     this.deleteDisabled = !AppComponent.isLoggedInForNav;
 
-    this.productsArr.push({name: "prod", description: "test prod", quantity: 56, price: 67, id: 5, manufacturer: "wipro"},
-    {name: "prod 2", description: "test prod 2", quantity: 5, price: 90543, id: 34, manufacturer: "nagarro"});
+    this.getProducts();
+  }
 
-    this.products.paginator = this.paginator;
-    this.products.sort = this.sort;
+  getProducts() {
+    this._productService.getAllProducts().subscribe(
+      (data: Product[]) => {
+        this.products = new MatTableDataSource<Product>(data);
+        this.products.paginator = this.paginator;
+        this.products.sort = this.sort;
+      },
+      (err: Error) => {
+        console.log(`${err.message}`);
+      }
+    );
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -72,6 +84,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   delete(idToDelete) {
     // call service to delete
+    this._productService.deleteProduct(idToDelete).subscribe(
+      (data: Product) => {
+        console.log(`DELETED PRODUCT ID ==> ${idToDelete}`);
+        this.getProducts();
+      },
+      (err: Error) => {
+        console.log(`${err.message}`);
+      }
+    );
   }
 
   deleteSelected() {
@@ -96,6 +117,22 @@ export class ProductListComponent implements OnInit, OnDestroy {
   incCounter(idOfProd) {
     // call service to increment counter of respective id
     console.log(`${idOfProd} clicked`);
+    this._productService.getProduct(idOfProd).subscribe(
+      (data: Product) => {
+        let newclicks  = data.clicks + 1;
+        this._productService.incrementClicks({"clicks" : newclicks}, idOfProd).subscribe(
+          (data: any) => {
+            console.log(`INCREMENTED CLICKS`);
+          },
+          (err: Error) => {
+            console.log(`${err.message}`);
+          }
+        );
+      },
+      (err: Error) => {
+        console.log(`${err.message}`);
+      }
+    );
   }
 
   applyFilter(event: Event) {

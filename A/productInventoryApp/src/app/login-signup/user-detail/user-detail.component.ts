@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-user-detail',
@@ -12,12 +14,11 @@ export class UserDetailComponent implements OnInit {
   lastName: string = "User's name";
   email: string = "User's email";
   location: string = "User's location";
-  mobileNumber: string = "User's mobile number";
+  mobileNumber: number = 11111;
 
   id: any;
-  userData: any = {};
 
-  constructor(private route: ActivatedRoute) { 
+  constructor(private route: ActivatedRoute, private _authService: AuthService) { 
     this.route.params.forEach((param: Params) => {
       this.id = +param['id'];
     });
@@ -25,6 +26,18 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit() {
     // get user details from server using id and populate userData
+    this._authService.getUser(this.id).subscribe(
+      (data: User) => {
+        this.firstName = data.firstName;
+        this.lastName = data.lastName;
+        this.email = data.emailId;
+        this.location = data.location;
+        this.mobileNumber = data.mobileNumber;
+      },
+      (err: Error) => {
+        console.log(`${err.message}`);
+      }
+    );
   }
 
 }

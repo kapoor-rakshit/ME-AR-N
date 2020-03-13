@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ProductService } from '../product.service';
+import { Product } from '../product';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,13 +16,12 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
    nameFromServer: string = "Name of product";
    descFromServer: string = "Desc of prod";
    manfFromServer: string = "Manf of prod";
-   priceFromServer: string = "Price of product";
-   quantFromServer: string = "Quantity of product";
+   priceFromServer: number = 1111;
+   quantFromServer: number = 1111;
 
    id: any;
-   productData: any;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private _router: Router, private _productService: ProductService) {
     this.route.params.forEach((param: Params) => {
       this.id = param['id'];
     });
@@ -29,7 +30,31 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.componentActive = true;
 
+    this._productService.getProduct(this.id).subscribe(
+      (data: Product) => {
+        this.nameFromServer = data.name;
+        this.descFromServer = data.description;
+        this.manfFromServer = data.manufacturer;
+        this.priceFromServer = data.price;
+        this.quantFromServer = data.quantity;
+      },
+      (err:Error) => {
+        console.log(`${err.message}`);
+      }
+    );
 
+  }
+
+  delete(idToDelete) {
+    this._productService.deleteProduct(idToDelete).subscribe(
+      (data: Product) => {
+        console.log(`DELETED PRODUCT ==> ${JSON.stringify(data)}`);
+        this._router.navigate(['/productinventory']);
+      },
+      (err: Error) => {
+        console.log(`${err.message}`);
+      }
+    );
   }
 
   ngOnDestroy(){

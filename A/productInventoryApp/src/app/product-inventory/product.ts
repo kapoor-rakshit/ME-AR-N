@@ -5,4 +5,5 @@ export interface Product {
     manufacturer: string;
     price: number;
     quantity: number;
+    clicks: number;
 }

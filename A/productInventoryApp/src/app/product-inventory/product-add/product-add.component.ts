@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ProductService } from '../product.service';
+import { Product } from '../product';
 
 const checkAddProdInputs: ValidatorFn = (fg: FormGroup) => {
   const name = fg.controls['nameInput'];
@@ -36,7 +38,7 @@ export class ProductAddComponent implements OnInit, OnDestroy {
   componentActive: boolean;
   addProductForm: FormGroup;
 
-  constructor(private _fb: FormBuilder, private _router: Router) { }
+  constructor(private _fb: FormBuilder, private _router: Router, private _productService: ProductService) { }
 
   ngOnInit() {
     // to prevent memory leaks , to subscribe till it is TRUE
@@ -79,9 +81,18 @@ export class ProductAddComponent implements OnInit, OnDestroy {
     let priceFromForm = this.priceInputRef.value;
     let quantFromForm = this.quantityInputRef.value;
 
-    // call to service for POST request
+    let newProduct = {name: nameFromForm, description: descFromForm, manufacturer: manfFromForm, price: priceFromForm, quantity: quantFromForm, clicks: 0};
 
-    this._router.navigate(['/productinventory']);
+    // call to service for POST request
+    this._productService.addProduct(newProduct).subscribe(
+      (data: Product) => {
+        console.log(`ADDED PRODUCT ==> ${JSON.stringify(data)}`);
+        this._router.navigate(['/productinventory']);
+      },
+      (err: Error) => {
+        console.log(`${err.message}`);
+      }
+    );
   }
 
   ngOnDestroy(){

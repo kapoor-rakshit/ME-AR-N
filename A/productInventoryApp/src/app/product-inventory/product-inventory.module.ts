@@ -17,6 +17,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
+import { GoogleChartsModule } from 'angular-google-charts';
+
 
 @NgModule({
   declarations: [ProductListComponent, ProductDetailComponent, ProductAddComponent, ProductEditComponent, ProductTopViewsComponent],
@@ -32,7 +34,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
-    ProductRoutingModule
+    ProductRoutingModule,
+    GoogleChartsModule
   ]
 })
 export class ProductInventoryModule { }

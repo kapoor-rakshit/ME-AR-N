@@ -1,6 +1,6 @@
-  
-  .full-width {
-    width: 100%;
+  .floatRight {
+    float: right;
+    margin: 2%;
   }
 
   fieldset {

@@ -23,4 +23,6 @@
             <td>{{quantFromServer}}</td>
         </tr>
     </table>
+    <button mat-raised-button class="floatRight" color="warn" (click)="delete(id)">Delete</button>
+    <a [routerLink]="['/productinventory/product/edit', id]" class="floatRight"><button mat-raised-button color="primary">Edit</button></a>
 </fieldset>
