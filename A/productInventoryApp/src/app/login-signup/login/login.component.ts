@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 import { AuthService } from '../auth.service';
 import { User } from '../user';
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   allUsers: User[];
 
-  constructor(private _fb: FormBuilder, private _router: Router, private _authService: AuthService) { }
+  constructor(private _fb: FormBuilder, private _router: Router, private route: ActivatedRoute, private _authService: AuthService) { }
 
   ngOnInit() {
     // to prevent memory leaks , to subscribe till it is TRUE
@@ -34,13 +34,18 @@ export class LoginComponent implements OnInit, OnDestroy {
       passwordInput: ['', [Validators.required, Validators.minLength(6)]]
     }, {validator: checkInputs});
 
-    this._authService.getAllUsers().subscribe(
+    // UNCOMMENT when performing TDD MOCK
+    /* this._authService.getAllUsers().subscribe(
       (data: User[]) => {
         this.allUsers = data;
       },
       (err: Error) => {
         console.log(`${err.message}`);
-      });
+      }); */
+
+      // COMMENT when performing TDD MOCK
+      this.allUsers = this.route.snapshot.data['resolveAllUsers'];
+
   }
 
   get emailInputRef() {

@@ -7,7 +7,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { AppComponent } from 'src/app/app.component';
 import { ProductService } from '../product.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -36,7 +36,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
                               // NOTE : In order as desired, Same values as `matColumnDef` attr in HTML file
                               //        This is also same as data keys {{element.quantity}} for sorting to happen in MatTable
 
-  constructor(private _productService: ProductService, private _router: Router) { }
+  constructor(private _productService: ProductService, private _router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.componentActive = true;
@@ -44,7 +44,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.editDisabled = !AppComponent.isLoggedInForNav;
     this.deleteDisabled = !AppComponent.isLoggedInForNav;
 
-    this.getProducts();
+    // UNCOMMENT when performing TDD MOCK
+    // this.getProducts();
+
+    // COMMENT when perofrming TDD MOCK
+    const dataFromRoute = this.route.snapshot.data['resolveAllProducts'];
+    this.products = new MatTableDataSource<Product>(dataFromRoute);
+    this.products.paginator = this.paginator;
+    this.products.sort = this.sort;
+
   }
 
   getProducts() {

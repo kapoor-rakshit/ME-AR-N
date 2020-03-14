@@ -26,7 +26,8 @@ export class UserDetailComponent implements OnInit {
 
   ngOnInit() {
     // get user details from server using id and populate userData
-    this._authService.getUser(this.id).subscribe(
+    // UNCOMMMENT when performing TDD MOCK
+    /* this._authService.getUser(this.id).subscribe(
       (data: User) => {
         this.firstName = data.firstName;
         this.lastName = data.lastName;
@@ -37,7 +38,14 @@ export class UserDetailComponent implements OnInit {
       (err: Error) => {
         console.log(`${err.message}`);
       }
-    );
+    ); */
+    // COMMENT when performing TDD MOCK
+    const dataFromRoute = this.route.snapshot.data['resolveUserDetails'];
+    this.firstName = dataFromRoute.firstName;
+    this.lastName = dataFromRoute.lastName;
+    this.email = dataFromRoute.emailId;
+    this.location = dataFromRoute.location;
+    this.mobileNumber = dataFromRoute.mobileNumber;
   }
 
 }

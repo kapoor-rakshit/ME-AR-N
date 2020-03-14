@@ -18,6 +18,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { GoogleChartsModule } from 'angular-google-charts';
+import { RouteGuardProductService } from './route-guard-product.service';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     ReactiveFormsModule,
     ProductRoutingModule,
     GoogleChartsModule
-  ]
+  ],
+  providers: [RouteGuardProductService]
 })
 export class ProductInventoryModule { }

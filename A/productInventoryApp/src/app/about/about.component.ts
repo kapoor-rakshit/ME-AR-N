@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
+  carouselDisp: boolean = false;
+
   constructor() {}
 
   ngOnInit() {
-    
+    this.carouselDisp = true;
   }
 }

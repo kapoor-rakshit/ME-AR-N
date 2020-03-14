@@ -30,7 +30,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.componentActive = true;
 
-    this._productService.getProduct(this.id).subscribe(
+    // UNCOMMENT when performing TDD MOCK
+    /* this._productService.getProduct(this.id).subscribe(
       (data: Product) => {
         this.nameFromServer = data.name;
         this.descFromServer = data.description;
@@ -41,14 +42,21 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       (err:Error) => {
         console.log(`${err.message}`);
       }
-    );
-
+    ); */
+    // COMMENT when performing TDD MOCK
+    const dataFromRoute = this.route.snapshot.data['resolveProduct'];
+    this.nameFromServer = dataFromRoute.name;
+    this.descFromServer = dataFromRoute.description;
+    this.manfFromServer = dataFromRoute.manufacturer;
+    this.priceFromServer = dataFromRoute.price;
+    this.quantFromServer = dataFromRoute.quantity;
+    
   }
 
   delete(idToDelete) {
     this._productService.deleteProduct(idToDelete).subscribe(
       (data: Product) => {
-        console.log(`DELETED PRODUCT ==> ${JSON.stringify(data)}`);
+        console.log(`DELETED PRODUCT ID ==> ${idToDelete}`);
         this._router.navigate(['/productinventory']);
       },
       (err: Error) => {

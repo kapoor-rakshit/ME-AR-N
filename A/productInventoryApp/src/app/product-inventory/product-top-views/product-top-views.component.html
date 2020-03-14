@@ -1,2 +1,2 @@
 
-<google-chart #chart [title]="title" [type]="type" [data]="chartData" [columnNames]="columnNames" [width]="width" [height]="height"></google-chart>
+<google-chart #chart *ngIf="chartDisp" [title]="title" [type]="type" [data]="chartData" [columnNames]="columnNames" [width]="width" [height]="height" [options]="options"></google-chart>

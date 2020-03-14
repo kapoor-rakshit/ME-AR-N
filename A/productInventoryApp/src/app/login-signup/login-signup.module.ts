@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { RouteGuardAuthService } from './routeguardauthservice.service';
 
 @NgModule({
   declarations: [LoginComponent, SignupComponent, UserDetailComponent],
@@ -22,6 +23,7 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     ReactiveFormsModule,
     FormsModule
-  ]
+  ],
+  providers: [RouteGuardAuthService]
 })
 export class LoginSignupModule { }

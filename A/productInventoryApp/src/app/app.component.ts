@@ -15,16 +15,18 @@ export class AppComponent {
   isLoggedIn: boolean;
   nameofuser: string;
   idofuser: number;
+  isLoading: boolean = true; 
 
   constructor(private _router: Router) {
     this._router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
-        
+        this.isLoading = true;
       }
       else if (event instanceof NavigationEnd || event instanceof NavigationError || event instanceof NavigationCancel) {
         this.isLoggedIn = AppComponent.isLoggedInForNav;
         this.nameofuser = AppComponent.nameofuserForNav;
         this.idofuser = AppComponent.idofuserForNav;
+        this.isLoading = false;
         }
     }); 
   }

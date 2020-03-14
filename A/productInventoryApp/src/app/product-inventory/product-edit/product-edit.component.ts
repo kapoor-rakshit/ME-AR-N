@@ -47,6 +47,8 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   id: any;
   clicks: any;
 
+  formSubmitted: boolean = false;
+
   constructor(private _fb: FormBuilder, private _router: Router, private route: ActivatedRoute, private _productService: ProductService) {
     this.route.params.forEach((param: Params) => {
       this.id = +param['id'];
@@ -66,7 +68,8 @@ export class ProductEditComponent implements OnInit, OnDestroy {
     });
 
      // get details of a product using id and populate productData
-     this._productService.getProduct(this.id).subscribe(
+      // UNCOMMENT when performing TDD MOCK
+     /* this._productService.getProduct(this.id).subscribe(
        (data: Product) => {
         this.nameFromServer = data.name;
         this.descFromServer = data.description;
@@ -78,7 +81,16 @@ export class ProductEditComponent implements OnInit, OnDestroy {
        (err: Error) => {
          console.log(`${err.message}`);
        }
-     );
+     ); */
+     // COMMENT when performing TDD MOCK
+    const dataFromRoute = this.route.snapshot.data['resolveProduct'];
+    this.nameFromServer = dataFromRoute.name;
+    this.descFromServer = dataFromRoute.description;
+    this.manfFromServer = dataFromRoute.manufacturer;
+    this.priceFromServer = dataFromRoute.price;
+    this.quantFromServer = dataFromRoute.quantity;
+    this.clicks = dataFromRoute.clicks;
+
   }
 
   get nameInputRef() {
@@ -102,6 +114,7 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   }
 
   OnFormSubmit() {
+    this.formSubmitted = true;
     let nameFromForm = this.nameInputRef.value;
     let descFromForm = this.descriptionInputRef.value;
     let manfFromForm = this.manufacturerInputRef.value;

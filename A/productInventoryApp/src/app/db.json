@@ -40,30 +40,57 @@
   "products": [
     {
       "id": 1,
-      "name": "prod1",
-      "description": "nddn editing from ui not clicks",
-      "manufacturer": "ckvk",
+      "name": "product 1",
+      "description": "description for product",
+      "manufacturer": "CTO Pune",
       "price": 56,
       "quantity": 197,
-      "clicks": 5
+      "clicks": 9
     },
     {
       "id": 3,
-      "name": "uoooo",
-      "description": "jkjk",
-      "manufacturer": "klll changed",
-      "price": 80,
+      "name": "product 2",
+      "description": "another prod",
+      "manufacturer": " ABC",
+      "price": 808,
       "quantity": 34,
+      "clicks": 12
+    },
+    {
+      "id": 5,
+      "name": "productTest",
+      "description": "testing product",
+      "manufacturer": "Wipro",
+      "price": 455,
+      "quantity": 99,
       "clicks": 6
     },
     {
-      "name": "new prod",
-      "description": "jkll",
-      "manufacturer": "ffhgh",
-      "price": 45,
-      "quantity": 854,
-      "clicks": 6,
-      "id": 4
+      "id": 7,
+      "name": "Product",
+      "description": "iPad",
+      "manufacturer": "Apple",
+      "price": 865,
+      "quantity": 2,
+      "clicks": 7
+    },
+    {
+      "id": 8,
+      "name": "check product",
+      "description": "checking",
+      "manufacturer": "TGB",
+      "price": 78,
+      "quantity": 96,
+      "clicks": 2
+    },
+    {
+      "name": "FitBit",
+      "description": "FitBit Blaze",
+      "manufacturer": "FitBit acquired by Google",
+      "price": 12000,
+      "quantity": 4,
+      "clicks": 1,
+      "id": 9
     }
   ]
 }
