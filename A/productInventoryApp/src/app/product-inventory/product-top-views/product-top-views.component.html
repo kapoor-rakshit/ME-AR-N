@@ -1,2 +1,9 @@
+<br/>
+
+<mat-radio-group aria-label="Select an option">
+    <mat-radio-button value="5" (change)="topProdChange5()" checked>Top 5 products</mat-radio-button>
+    <mat-radio-button value="10" (change)="topProdChange10()">Top 10 products</mat-radio-button>
+</mat-radio-group>
 
 <google-chart #chart *ngIf="chartDisp" [title]="title" [type]="type" [data]="chartData" [columnNames]="columnNames" [width]="width" [height]="height" [options]="options"></google-chart>
+

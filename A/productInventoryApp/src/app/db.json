@@ -54,7 +54,7 @@
       "manufacturer": " ABC",
       "price": 808,
       "quantity": 34,
-      "clicks": 12
+      "clicks": 14
     },
     {
       "id": 5,
@@ -63,7 +63,7 @@
       "manufacturer": "Wipro",
       "price": 455,
       "quantity": 99,
-      "clicks": 6
+      "clicks": 7
     },
     {
       "id": 7,
@@ -89,8 +89,26 @@
       "manufacturer": "FitBit acquired by Google",
       "price": 12000,
       "quantity": 4,
-      "clicks": 1,
+      "clicks": 2,
       "id": 9
+    },
+    {
+      "name": "iPod",
+      "description": "iPod Nano",
+      "manufacturer": "Apple",
+      "price": 10000,
+      "quantity": 1,
+      "clicks": 1,
+      "id": 10
+    },
+    {
+      "name": "iPad",
+      "description": "iPad Air",
+      "manufacturer": "Apple",
+      "price": 30000,
+      "quantity": 2,
+      "clicks": 2,
+      "id": 11
     }
   ]
 }
