@@ -13,8 +13,8 @@
   <mat-label>Search</mat-label>
   <input matInput type="text" (keyup)="applyFilter($event)" placeholder="search">
 </mat-form-field>
-
-<table mat-table matSort [dataSource]="products" class="mat-elevation-z8">
+<div style="overflow: auto; width: 100%;" class="mat-elevation-z8">
+<table mat-table matSort [dataSource]="products">
     <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
@@ -76,4 +76,5 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
 </div>

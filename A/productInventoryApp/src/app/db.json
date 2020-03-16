@@ -75,15 +75,6 @@
       "clicks": 7
     },
     {
-      "id": 8,
-      "name": "check product",
-      "description": "checking",
-      "manufacturer": "TGB",
-      "price": 78,
-      "quantity": 96,
-      "clicks": 2
-    },
-    {
       "name": "FitBit",
       "description": "FitBit Blaze",
       "manufacturer": "FitBit acquired by Google",
@@ -107,7 +98,7 @@
       "manufacturer": "Apple",
       "price": 30000,
       "quantity": 2,
-      "clicks": 2,
+      "clicks": 3,
       "id": 11
     }
   ]
