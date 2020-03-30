@@ -1,19 +1,13 @@
 table {
     width: 100%;
     margin: auto;
-  }
+}
 
-  .mat-sort-header-container.mat-header-cell {
-    flex-direction: column;
-    justify-content: center;
-  }
+.mat-cell, .mat-header-cell {
+    padding-left: 20px;
+}
 
-  .mat-sort-header-container.mat-cell {
-    text-align: center;
-    justify-content:center;
-  }
-
-  th.mat-sort-header-sorted {
+.mat-sort-header-sorted {
     color: black;
   }
 
@@ -23,14 +17,14 @@ table {
     float: left;
   }
 
-  .floatRight {
+.floatRight {
       float: right;
   }
 
-  .marginRight {
+.marginRight {
     margin-right: 2%;
   }
 
-  .paddingContent {
+.paddingContent {
       padding: 20px;
   }
