@@ -2,14 +2,35 @@ table {
     width: 100%;
     margin: auto;
 }
+table th {
+    background-color: #220a7a;
+    color: white;
+}
+table tr:nth-child(even) {                                       /*CSS Considers 1 based index*/
+    background-color: #f1f1f1;
+}
+table tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+table tr:hover {
+    background-color: #c0bebe;
+}
+
+/* For SORT HEADER , copy style(s) to global 'styles.css' file */
+.mat-sort-header-arrow {
+    color: white;
+    opacity: 1;
+}
+.mat-sort-header-sorted .mat-sort-header-arrow {
+    color: white;
+    opacity: 1;
+}
+/* SORT HEADER STYLE ends */
 
 .mat-cell, .mat-header-cell {
     padding-left: 20px;
+    text-align: center;
 }
-
-.mat-sort-header-sorted {
-    color: black;
-  }
 
 .mat-form-field {
     font-size: 16px;
