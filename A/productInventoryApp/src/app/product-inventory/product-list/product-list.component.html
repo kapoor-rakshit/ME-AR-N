@@ -9,13 +9,14 @@
 <a [routerLink]="['/productinventory/product/add']"><button class="btn btn-success floatRight">Add Product</button></a>
 <a [routerLink]="['topproducts']"><button class="btn btn-outline-primary floatRight marginRight">Top products</button></a>
 
-<mat-form-field>
-  <mat-label>Search</mat-label>
-  <input matInput type="text" (keyup)="applyFilter($event)" placeholder="search">
-</mat-form-field>
-<div style="overflow: auto; width: 100%;" class="mat-elevation-z8">
-<table mat-table matSort [dataSource]="products">
-    <!--- Note that these columns can be defined in any order.
+<div id="tableDiv" class="mat-elevation-z8">
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput type="text" (keyup)="applyFilter($event)" placeholder="search">
+  </mat-form-field>
+  <div id="tableContainer">
+    <table mat-table matSort [dataSource]="products">
+        <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
         <!-- Checkbox Column -->
@@ -72,9 +73,10 @@
           <td mat-cell *matCellDef="let element"><button mat-raised-button color="warn" (click)="delete(element.id)" [disabled]="deleteDisabled">Delete</button></td>
         </ng-container>
       
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true;"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-</div>
+      </table>
+    </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
 </div>
