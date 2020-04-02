@@ -1,10 +1,9 @@
-table {
-    width: 100%;
-    margin: auto;
-}
+
 table th {
     background-color: #220a7a;
     color: white;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 table tr:nth-child(even) {                                       /*CSS Considers 1 based index*/
     background-color: #f1f1f1;
@@ -16,27 +15,37 @@ table tr:hover {
     background-color: #c0bebe;
 }
 
+.mat-cell {
+    padding-left: 15px;
+    padding-right: 20px;
+    text-align: center;
+}
+
 /* For SORT HEADER , copy style(s) to global 'styles.css' file */
 .mat-sort-header-arrow {
     color: white;
-    opacity: 1;
 }
 .mat-sort-header-sorted .mat-sort-header-arrow {
     color: white;
-    opacity: 1;
 }
 /* SORT HEADER STYLE ends */
-
-.mat-cell, .mat-header-cell {
-    padding-left: 20px;
-    text-align: center;
-}
 
 .mat-form-field {
     font-size: 16px;
     width: 40%;
     float: left;
-  }
+}
+
+div#tableDiv {
+    padding: 5px;
+}
+
+div#tableContainer {
+    width: 100%;
+    max-height: 80vh;
+    margin: auto;
+    overflow: auto;
+}
 
 .floatRight {
       float: right;
