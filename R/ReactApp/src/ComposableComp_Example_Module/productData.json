@@ -1,0 +1,28 @@
+{
+    "productsData": [
+        {
+            "id": 2,
+            "name": "iPhone",
+            "quantity": 3,
+            "price": 110000
+        },
+        {
+            "id": 3,
+            "name": "iPad",
+            "quantity": 2,
+            "price": 30000
+        },
+        {
+            "id": 4,
+            "name": "iPod",
+            "quantity": 1,
+            "price": 10000
+        },
+        {
+            "id": 5,
+            "name": "Fitbit",
+            "quantity": 2,
+            "price": 12000
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+{
+  "inventoryData": [
+    {
+      "id": 1,
+      "name": "iPhoneX",
+      "quantity": 1,
+      "price": 110000
+    },
+    {
+      "id": 2,
+      "name": "iPad Air",
+      "quantity": 9,
+      "price": 30000
+    },
+    {
+      "id": 3,
+      "name": "iPod",
+      "quantity": 1,
+      "price": 12000
+    },
+    {
+      "id": 4,
+      "name": "Nike",
+      "quantity": 17,
+      "price": 8000
+    },
+    {
+      "name": "iPhoneXR",
+      "quantity": 1,
+      "price": 50000,
+      "id": 5
+    },
+    {
+      "id": 6,
+      "name": "iPhone8 plus",
+      "quantity": 1,
+      "price": 80000
+    }
+  ]
+}
