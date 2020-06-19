@@ -1,0 +1,16 @@
+{
+  "inventoryData": [
+    {
+      "name": "iPhone 8 Plus",
+      "quantity": 1,
+      "price": 80000,
+      "id": 3
+    },
+    {
+      "name": "iPad Air",
+      "quantity": 2,
+      "price": 30000,
+      "id": 4
+    }
+  ]
+}

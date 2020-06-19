@@ -1,0 +1,64 @@
+.textcenter {
+    text-align: center;
+}
+
+.formContainer {
+    max-width: 50vw;
+    min-width: 50vw;
+    margin: auto;
+}
+
+.bluecolor {
+    color: #002677;
+}
+
+.activeNav {
+    color: red;
+    font-weight: bold;
+}
+
+.marginleft {
+    margin-left: 2%;
+}
+
+.tableContainer {
+    overflow: auto;
+    width: 80vw;
+    margin: auto;
+}
+
+table {                                              /* collapse table border */
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+/* background color and text color of elements */
+th {
+    background-color: #002677;
+    color: white;
+}
+
+/* 2 : text-align property sets the horizontal alignment (like left, right, or center) of the content in <th> or <td> */
+th, td {
+    text-align: center;
+}
+    
+/* 3 : vertical-align property sets the vertical alignment (like top, bottom, or middle) of the content in <th> or <td>. */
+td {
+    vertical-align: middle;
+}
+
+/* 6 : :hover selector on <tr> to highlight table rows on mouse over */
+table tr:nth-child(odd) {                                       /*CSS Considers 1 based index*/
+    background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+table tr:hover {
+    background-color: #dbdbdb;
+}
