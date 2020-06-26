@@ -36,6 +36,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
                               // NOTE : In order as desired, Same values as `matColumnDef` attr in HTML file
                               //        This is also same as data keys {{element.quantity}} for sorting to happen in MatTable
 
+  tableFilters: any[] = [];
+  nameFilterVal: string = null;
+  namesArr: string[] = [];
+  manfFilterVal: string = null;
+  manfsArr: string[] = [];
+
   constructor(private _productService: ProductService, private _router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -52,6 +58,23 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.products = new MatTableDataSource<Product>(dataFromRoute);
     this.products.paginator = this.paginator;
     this.products.sort = this.sort;
+
+    /* FILTER TABLE schemas , custom filterPredicate */
+    this.products.filterPredicate = (data: any, filtersJson: string) => {
+      const matchFilter = [];
+      const filters = JSON.parse(filtersJson);
+  
+      filters.forEach(filter => {
+        const val = data[filter.id] === null ? '' : " " + data[filter.id].toLowerCase().trim() + " ";
+        const filterVal = filter.value === null ? '' : " " + filter.value.toLowerCase().trim() + " ";
+        matchFilter.push(val.includes(filterVal));
+      });
+
+      return matchFilter.every(Boolean);
+    };
+
+    namesArr = [null, "kapoor", "rakshit"];
+    manfsArr = [null, "kapoors"];
 
   }
 
@@ -143,9 +166,30 @@ export class ProductListComponent implements OnInit, OnDestroy {
     );
   }
 
+  /* FILTER TABLE schemas , comment/uncomment one or other */
+  /* 1. To filter table using a text field, using default filterPredicate */
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.products.filter = filterValue.trim().toLowerCase();
+  }
+
+  /* 2. To filter table using <select> options, using custom filterPredicate */
+  applySelectFilter() {
+    this.tableFilters = [];
+    this.tableFilters.push(
+      {id: 'name', value: this.nameFilterVal},{id: 'manufacturer', value: this.manfFilterVal}
+    );
+
+    this.products.filter = JSON.stringify(this.tableFilters);
+     if (this.products.paginator) {
+      this.products.paginator.firstPage();
+    }
+  }
+
+  resetFilters() {
+    this.nameFilterVal = null;
+    this.manfFilterVal = null;
+    this.applySelectFilter();
   }
 
   ngOnDestroy(){

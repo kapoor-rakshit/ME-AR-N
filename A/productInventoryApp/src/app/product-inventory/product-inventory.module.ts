@@ -16,7 +16,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatRadioModule } from '@angular/material';
+import { MatRadioModule, MatSelectModule, MatTooltipModule } from '@angular/material';
 
 import { GoogleChartsModule } from 'angular-google-charts';
 import { RouteGuardProductService } from './route-guard-product.service';
@@ -35,6 +35,7 @@ import { RouteGuardProductService } from './route-guard-product.service';
     MatSortModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     ProductRoutingModule,

@@ -10,10 +10,33 @@
 <a [routerLink]="['topproducts']"><button class="btn btn-outline-primary floatRight marginRight">Top products</button></a>
 
 <div id="tableDiv" class="mat-elevation-z8">
+
+<!-- FILTER TABLE schemas , comment/uncomment one or other -->
+<!-- 1. To filter table using a text field, using default filterPredicate -->
   <mat-form-field>
     <mat-label>Search</mat-label>
     <input matInput type="text" (keyup)="applyFilter($event)" placeholder="search">
   </mat-form-field>
+
+<!-- 2. To filter table using <select> options, using custom filterPredicate -->
+  <div class="filterBtns">
+        <mat-form-field>
+            <mat-label>Filter by Name</mat-label>
+            <mat-select [(ngModel)]="nameFilterVal" (ngModelChange)="applySelectFilter()">
+              <mat-option *ngFor="let name of namesArr" [value]="name">{{name | uppercase}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        &nbsp;&nbsp;
+        <mat-form-field>
+            <mat-label>Filter by Manufacturer</mat-label>
+            <mat-select [(ngModel)]="manfFilterVal" (ngModelChange)="applySelectFilter()">
+              <mat-option *ngFor="let manf of manfsArr" [value]="manf">{{manf | uppercase}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        &nbsp;&nbsp;
+        <button mat-stroked-button color="warn" (click)="resetFilters()">Reset</button>
+   </div>
+
   <div id="tableContainer">
     <table mat-table matSort [dataSource]="products">
         <!--- Note that these columns can be defined in any order.
