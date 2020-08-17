@@ -43,7 +43,7 @@ class ProductsList extends React.Component {
                         <th>Price</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody>                
                     {productsData}
                 </tbody>
             </table>
