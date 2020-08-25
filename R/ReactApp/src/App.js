@@ -6,13 +6,30 @@ import FunctionalComponent from './Functional_Components_Module/react-hooks';
 
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      componentDisp: true
+    };
+  }
+
+  toggleDisp() {
+    this.setState((prevState)=> {
+      return (
+        {componentDisp: !prevState.componentDisp}
+      );
+    });
+  }
+
   render() {
     return (
       <>
       {/* <CounterComponent></CounterComponent> */}
       {/* <AllProductsComponent></AllProductsComponent> */}
       {/* <RouterOutlet></RouterOutlet> */}
-      <FunctionalComponent></FunctionalComponent>
+      {!!this.state.componentDisp && (<FunctionalComponent></FunctionalComponent>)}
+      <br></br>
+      <button type={`button`} onClick={()=> this.toggleDisp()}>Toggle Component</button>
       </>
     );
   }
