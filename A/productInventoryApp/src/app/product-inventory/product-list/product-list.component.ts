@@ -30,8 +30,8 @@ export class ProductListComponent implements OnInit, OnDestroy {
   productsArr: Product[];
   products = new MatTableDataSource<Product>(this.productsArr);
   selection = new SelectionModel<Product>(true, []);                        // (allowMultiSelect, initialSelection)
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort!: MatSort;
   displayedColumns: string[] = ['select', 'name', 'description', 'manufacturer', 'price', 'quantity', 'editbtns', 'delbtns'];    
                               // NOTE : In order as desired, Same values as `matColumnDef` attr in HTML file
                               //        This is also same as data keys {{element.quantity}} for sorting to happen in MatTable
