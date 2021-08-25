@@ -20,7 +20,7 @@ import { MatRadioModule, MatSelectModule, MatTooltipModule } from '@angular/mate
 
 import { GoogleChartsModule } from 'angular-google-charts';
 import { RouteGuardProductService } from './route-guard-product.service';
-
+import { ProductService } from './product.service';
 
 @NgModule({
   declarations: [ProductListComponent, ProductDetailComponent, ProductAddComponent, ProductEditComponent, ProductTopViewsComponent],
@@ -41,6 +41,6 @@ import { RouteGuardProductService } from './route-guard-product.service';
     ProductRoutingModule,
     GoogleChartsModule
   ],
-  providers: [RouteGuardProductService]
+  providers: [RouteGuardProductService, ProductService]
 })
 export class ProductInventoryModule { }
