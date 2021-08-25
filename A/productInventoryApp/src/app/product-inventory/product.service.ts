@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
+/* Add this service class to providers array of respective module */
+
 @Injectable({
   providedIn: 'root'
 })
